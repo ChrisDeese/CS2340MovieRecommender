@@ -14,26 +14,26 @@
                 <p:messages id="msgs" />
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="username" value="User Name:" />
-                    <p:inputText id="username" value="#{user.username}" 
-                                 required="true" label="Username">
-                        <f:validateLength minimum="2"/>
+                    <p:inputText id="username" value="" 
+                                 required="false" label="Username">
+                        <f:validateLength minimum="0"/>
                     </p:inputText>
                         
                     <p:message for="username" display="icon" />
                     
                     <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{user.password}" 
-                                label="Password" required="true" 
+                    <p:password id="password" value="sticks" 
+                                label="Password" required="false" 
                                 feedback="true">
-                        <f:validateLength minimum="2" />
+                        <f:validateLength minimum="0" />
                     </p:password>
                     
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
                
-                <p:commandButton update="panel" value="Submit" action="#{user.login()}" 
+                <p:commandButton update="panel" value="Submit" 
                              icon="ui-icon-check" />
-                <p:commandButton update="panel" value="Cancel Login" action="index" />
+                <p:commandButton update="panel" value="Cancel Login" action="welcomePage" />
                 
                 
             </p:panel>  

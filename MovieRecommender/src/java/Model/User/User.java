@@ -19,9 +19,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class User implements Serializable{
-
-    private String password;
     private String username;
+    private String password;
     
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
@@ -33,19 +32,19 @@ public class User implements Serializable{
         
     }
     
-    public String getUN() {
+    public String getUsername() {
         return this.username;
     }
     
-    public String getPW() {
+    public String getPassword() {
         return this.password;
     }
     
-    public void setUN(String un) {
+    public void setUsername(String un) {
         this.username = un;
     }
     
-    public void setPW(String p) {
+    public void setPassword(String p) {
         this.password = p;
     }
     

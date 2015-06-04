@@ -10,11 +10,15 @@
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <title>Movie Buzz</title>
+      
             </f:facet>
         </h:head>
 
         <h:body>
-
+            <h:form>
+            <p:panel id="panel" header="Welcome to Movie Recommender">
+            <p:commandButton update = "panel" value="Login" action="login" />
+            </p:panel>
             <p:layout fullPage="true">
 
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
@@ -44,6 +48,7 @@
                 </p:layoutUnit>
 
             </p:layout>
+            </h:form>
 
         </h:body>
 

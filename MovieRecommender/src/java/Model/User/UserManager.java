@@ -5,21 +5,32 @@
  */
 package Model.User;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ApplicationScoped;
 
 /**
  *
  * @author chris
  */
-@ManagedBean
-@RequestScoped
+@ManagedBean (name = "userManager")
+@ApplicationScoped
 public class UserManager {
 
+    
+    private Map<String, UserData> users = new HashMap<>();
+    
+    
     /**
      * Creates a new instance of UserManager
      */
     public UserManager() {
+        users.put("default", new UserData("user", "pass"));
+    }
+    
+    UserData find(String username) {
+        return users.get(username);
     }
     
 }

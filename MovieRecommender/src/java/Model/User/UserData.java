@@ -12,5 +12,19 @@ package Model.User;
  * This class to be deleted once database is implemented.
  */
 public class UserData {
+
+    
+    private String username;
+    private String password;
+    //more to be added later
+    
+    UserData(String name, String pass) {
+        this.username = name;
+        this.password = pass;
+    }
+    
+    boolean checkP(String p) {
+        return (p.equals(password));
+    }
     
 }

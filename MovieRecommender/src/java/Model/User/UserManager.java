@@ -26,7 +26,7 @@ public class UserManager {
      * Creates a new instance of UserManager
      */
     public UserManager() {
-        users.put("default", new UserData("user", "pass"));
+        users.put("user", new UserData("user", "pass"));
     }
     
     UserData find(String username) {

@@ -60,7 +60,7 @@ public class User implements Serializable{
             return null;
         }
         System.out.println("Login Success");
-            return "SucessPage";
+            return "SuccessPage";
     }
     
     public void setUserManager(UserManager um) {

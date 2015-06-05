@@ -16,7 +16,7 @@
                     <p:outputLabel for="username" value="User Name:" />
                     <p:inputText id="username" value="#{user.username}" 
                                  required="false" label="Username">
-                        <f:validateLength minimum="2"/>
+                        <f:validateLength minimum="0"/>
                     </p:inputText>
                         
                     <p:message for="username" display="icon" />
@@ -25,7 +25,7 @@
                     <p:password id="password" value="#{user.password}" 
                                 label="Password" required="false" 
                                 feedback="true">
-                        <f:validateLength minimum="2" />
+                        <f:validateLength minimum="0" />
                     </p:password>
                     
                     <p:message for="password" display="Text" />
@@ -33,7 +33,7 @@
                
                 <p:commandButton update="panel" value="Submit" 
                              icon="ui-icon-check" action ="#{user.login()}" />
-                <p:commandButton update="panel" value="Cancel Login" action="welcomePage" />
+                <p:commandButton update="panel" value="Cancel Login" action="#{user.cancel()}" />
                 
                 
             </p:panel>  

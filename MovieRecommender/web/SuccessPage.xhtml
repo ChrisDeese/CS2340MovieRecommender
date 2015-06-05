@@ -12,8 +12,10 @@
         <h:form>       
             <p:panel id="panel" header="Welcome to Movie Recommender">
                 <p> You successfully logged in!</p>
+                <p> Welcome "#{user.username}"! </p>
+                <p> with password "#{user.password}"!</p>
                
-                <p:commandButton update="panel" value="Log out" action="welcomePage" />
+                <p:commandButton update="panel" value="Log out" action="#{user.logout()}" />
                 
                 
             </p:panel>  

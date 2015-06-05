@@ -68,6 +68,11 @@ public class User implements Serializable{
         return "welcomePage.xhtml?faces-redirect=true";
     }
     
+    public String cancel() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "welcomePage.xhtml?faces-redirect=true";
+    }
+    
     public void setUserManager(UserManager um) {
         userManager = um;
     }

@@ -22,15 +22,9 @@ import javax.faces.context.Flash;
 public class User implements Serializable{
     private String username;
     private String password;
-<<<<<<< HEAD
     private String email;
     private boolean admin;
 
-=======
-    
-
-    
->>>>>>> origin/Register
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
 
@@ -86,10 +80,7 @@ public class User implements Serializable{
      */
     public String login() {
         UserData data = userManager.find(username);
-<<<<<<< HEAD
 
-        if (data == null || !data.checkP(password)) {
-=======
         //password = this.getPassword();
         System.out.println(this.password.length());
         //System.out.println(data);
@@ -121,9 +112,8 @@ public class User implements Serializable{
                     + " Please fill out the required fields."));
             return null;
         }
-        
+
         else if (data == null || !data.checkP(password)) {
->>>>>>> origin/Register
             username="";
             password="";
             //System.out.println("No such user found or password wrong");

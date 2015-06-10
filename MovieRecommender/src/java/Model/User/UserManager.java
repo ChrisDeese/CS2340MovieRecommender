@@ -41,7 +41,7 @@ public class UserManager {
      * Adds user to the database
      */
     public void addUser(UserData user) {
-        users.put(user.g, user);
+        users.put(user.getUsername(), user);
     }
 
     /**

@@ -5,23 +5,23 @@
       xmlns:p="http://primefaces.org/ui"         
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Welcome</title>
+        <title>View Profile</title>
         
     </h:head>
     <h:body><center>
         <h:form>       
             <p:panel id="panel" header="Welcome to Movie Recommender">
-                <p> What would you like to do?</p>
-               
-                <p:commandButton update="panel" value="Login" action="login" />
-                <p:commandButton update="panel" value="Register" action = "Register" />
+                <p> Hi #{user.username}! the following is your profile information.</p>
+                <p>   Name: Insert Something Here </p>
+                <p>    Username: #{user.username} </p>
+                <p>    Password" #{user.password} </p>
+                    
 
-
-
+                <p:commandButton update="panel" value="Back" action="index" />
+                <p:commandButton update="panel" value="Edit Profile" action="editProfile" />
                 
                 
             </p:panel>  
         </h:form>
         </center></h:body>
 </html>
-

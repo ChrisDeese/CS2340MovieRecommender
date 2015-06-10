@@ -17,25 +17,26 @@
         <h:body>
             <h:form>
             <p:panel id="panel" header="Welcome to Movie Recommender">
-            <p:commandButton update = "panel" value="Login" action="login" />
             </p:panel>
             <p:layout fullPage="true">
 
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Movie Buzz
+                    Hi #{user.username}!  
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    <p:commandButton update = "panel" value="Login" action="login" />
                     Team Infinite Loop
                 </p:layoutUnit>
-
+                <p:growl id="growl" showDetail="true" autoUpdate="true"/>
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <p:menu>
-                        <p:submenu label="Resources">
-                            <p:menuitem value="Logout" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                        <p:submenu label="Options">
+                            <p:menuitem value="Edit Profile" action ="editProfile" />
+                            <p:menuitem value="View Profile" action ="ViewProfile" />
                             <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
                             <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+                            <p:menuitem action="#{user.logout()}" value ="Logout"/>
 
                         </p:submenu>
 

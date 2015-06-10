@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 /**
  *
@@ -21,9 +22,15 @@ import javax.faces.context.FacesContext;
 public class User implements Serializable{
     private String username;
     private String password;
+<<<<<<< HEAD
     private String email;
     private boolean admin;
 
+=======
+    
+
+    
+>>>>>>> origin/Register
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
 
@@ -47,6 +54,7 @@ public class User implements Serializable{
      * @return password
      */
     public String getPassword() {
+        //System.out.println(this.password);
         return this.password;
     }
 
@@ -78,17 +86,59 @@ public class User implements Serializable{
      */
     public String login() {
         UserData data = userManager.find(username);
+<<<<<<< HEAD
 
         if (data == null || !data.checkP(password)) {
+=======
+        //password = this.getPassword();
+        System.out.println(this.password.length());
+        //System.out.println(data);
+        if (this.username.length() == 0 && this.getPassword().length()== 0) {
             username="";
             password="";
-            System.out.println("No such user found or password wrong");
+            //System.out.println("No such user found or password wrong");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Username and "
+                    + "password field empty."
+                    + " Please fill out the required fields."));
+            return null;
+        }
+        else if (this.username.length()> 0 && this.getPassword().length()== 0) {
+            username="";
+            password="";
+            //System.out.println("No such user found or password wrong");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Password field empty."
+                    + " Please fill out the required fields."));
+            return null;
+        }
+        else if (this.username.length()== 0 && this.getPassword().length()> 0) {
+            username="";
+            password="";
+            //System.out.println("No such user found or password wrong");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Username field empty."
+                    + " Please fill out the required fields."));
+            return null;
+        }
+        
+        else if (data == null || !data.checkP(password)) {
+>>>>>>> origin/Register
+            username="";
+            password="";
+            //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username or Password incorrect"));
             return null;
         }
         System.out.println("Login Success");
-            return "SuccessPage";
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+        Flash flash = facesContext.getExternalContext().getFlash();
+        flash.setKeepMessages(true);
+        flash.setRedirect(true);
+        facesContext.addMessage(null, new FacesMessage(
+        "You successfully logged in!",""));
+            return "index";
     }
 
     /**

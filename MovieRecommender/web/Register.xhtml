@@ -9,12 +9,21 @@
         
     </h:head>
     <h:body><center>
-        <h:form>       
-            <p:panel id="panel" header="Login to Movie Recommender" >
+        <h:form>
+            <p><b> Enter your name, a unique username, and password</b></p>
+            <p:panel id="panel" header="Registration for Movie Recommender" >
                 <p:messages id="msgs" />
                 <h:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel for="name" value="Name:" />
+   
+                    <p:inputText id="name"  
+                                 required="false" label="First name">
+                        
+                        <f:validateLength minimum="0"/>
+                    </p:inputText>
+                    <p:message for="name" display="Text" />
                     <p:outputLabel for="username" value="User Name:" />
-                    <p:inputText id="username" value="#{user.username}" 
+                    <p:inputText id="username"  
                                  required="false" label="Username">
                         <f:validateLength minimum="0"/>
                     </p:inputText>
@@ -22,9 +31,9 @@
                     <p:message for="username" display="icon" />
                     
                     <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{user.password}" 
+                    <p:password id="password"  
                                 label="Password" required="false" 
-                                feedback="false">
+                                feedback="true">
                         <f:validateLength minimum="0" />
                     </p:password>
                     
@@ -32,11 +41,8 @@
                 </h:panelGrid>
                
                 <p:commandButton update="panel" value="Submit" 
-                             icon="ui-icon-check" action ="#{user.login()}" />
-                <p:commandButton update="panel" value="Cancel Login" action="#{user.cancel()}" />
-                
-                
- 
+                             icon="ui-icon-check" action = "RegisterSuccess" />
+                <p:commandButton update="panel" value="Cancel Registration" action="welcomePage" />
                 
                 
             </p:panel>  

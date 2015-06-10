@@ -11,12 +11,9 @@
     <h:body><center>
         <h:form>       
             <p:panel id="panel" header="Welcome to Movie Recommender">
-                <p> You successfully logged in!</p>
-                <p> Welcome "#{user.username}"! </p>
-                <p> with password "#{user.password}"!</p>
-               
-                <p:commandButton update="panel" value="Log out" action="#{user.logout()}" />
-                <p:growl id="growl" showDetail="true" autoUpdate="true"/>
+                <p> You successfully registered in!</p>
+                <p:commandButton update="panel" value="Log in" action="login" />
+                <p:commandButton update="panel" value="Log out" action="welcomePage" />
                 
                 
             </p:panel>  

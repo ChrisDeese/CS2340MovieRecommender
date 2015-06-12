@@ -62,6 +62,13 @@ public class User implements Serializable{
     }
 
     /**
+     * Sets the real name of this user
+     */
+    public void setName(String n) {
+        this.name = n;
+    }
+
+    /**
      * Sets username of this user
      */
     public void setUsername(String un) {

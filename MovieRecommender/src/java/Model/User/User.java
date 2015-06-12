@@ -33,7 +33,10 @@ public class User implements Serializable{
      * Creates a new instance of User
      */
     public User() {
-
+        username = "";
+        oldUsername = "";
+        password = "";
+        name = "";
     }
 
     /**
@@ -227,14 +230,14 @@ public class User implements Serializable{
             return null;
         }
 
-        UserData data = userManager.find(username);
+        UserData data = userManager.find(oldUsername);
         oldUsername = username;
         data.setName(name);
         data.setUsername(username);
         data.setPassword(password);
         data.setAdmin(admin);
         System.out.println("Profile Edited");
-        return "viewProfile";
+        return "ViewProfile";
     }
 
     /**

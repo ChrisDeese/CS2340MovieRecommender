@@ -33,6 +33,7 @@ public class UserData {
         this.username = name;
         this.password = pass;
         this.prevUN = name;
+        this.name = "";
     }
 
     /**

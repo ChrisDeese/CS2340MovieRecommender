@@ -67,7 +67,7 @@ public class User implements Serializable{
      public void setName(String name) {
         this.name =name;
     }
-    
+
     /**
      * Sets username of this user
      */

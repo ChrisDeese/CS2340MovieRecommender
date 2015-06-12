@@ -33,7 +33,10 @@ public class User implements Serializable{
      * Creates a new instance of User
      */
     public User() {
-
+        username = "";
+        oldUsername = "";
+        password = "";
+        name = "";
     }
 
     /**

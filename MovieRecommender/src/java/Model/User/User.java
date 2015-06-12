@@ -62,6 +62,13 @@ public class User implements Serializable{
     }
 
     /**
+     * Sets the real name of this user
+     */
+     public void setName(String name) {
+        this.name =name;
+    }
+    
+    /**
      * Sets username of this user
      */
     public void setUsername(String un) {
@@ -74,7 +81,7 @@ public class User implements Serializable{
     public void setPassword(String p) {
         this.password = p;
     }
-
+    
     /**
      * Logs in user. If password is wrong, login fails
      * @return page redirect
@@ -181,7 +188,9 @@ public class User implements Serializable{
         UserData data = new UserData(username, password);
         data.setName(name);
         data.setAdmin(admin);
+        data.setPrevUN(username);
         userManager.addUser(data);
+        oldUsername = data.getPrevUN();
         System.out.println("Registration Success");
         return "index";
     }
@@ -219,11 +228,11 @@ public class User implements Serializable{
         }
 
         UserData data = userManager.find(username);
+        oldUsername = username;
         data.setName(name);
         data.setUsername(username);
         data.setPassword(password);
         data.setAdmin(admin);
-        oldUsername = username;
         System.out.println("Profile Edited");
         return "viewProfile";
     }

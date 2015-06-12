@@ -17,6 +17,7 @@ public class UserData {
     private String username;
     private String password;
     private String name;
+    private String prevUN;
     private boolean admin;
 
     //To add later
@@ -31,6 +32,7 @@ public class UserData {
     UserData(String name, String pass) {
         this.username = name;
         this.password = pass;
+        this.prevUN = name;
     }
 
     /**
@@ -55,12 +57,28 @@ public class UserData {
         this.admin = b;
     }
 
+    public void setPrevUN(String s) {
+        this.prevUN = s;
+    }
+    
     /**
      * Gets the username of this user
      * @return username
      */
     public String getUsername() {
         return username;
+    }
+    
+    public String getPrevUN() {
+        return prevUN;
+    }
+    
+    public void setUsername(String un) {
+        this.username = un;
+    }
+    
+    public void setPassword(String pw) {
+        this.password = pw;
     }
 
     /*public String getName() {

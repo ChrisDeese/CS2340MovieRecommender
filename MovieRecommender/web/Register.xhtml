@@ -15,10 +15,8 @@
                 <p:messages id="msgs" />
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="name" value="Name:" />
-
                     <p:inputText id="name"  value="#{user.name}"
-                                 required="false" label="Name Address">
-
+                                 required="false" label="Name">
                         <f:validateLength minimum="0"/>
                     </p:inputText>
                     <p:message for="name" display="Text" />
@@ -42,7 +40,7 @@
 
                 <p:commandButton update="panel" value="Submit"
                              icon="ui-icon-check" action = "#{user.register()}" />
-                <p:commandButton update="panel" value="Cancel Registration" action="welcomePage" />
+                <p:commandButton update="panel" value="Cancel Registration" action="#{user.cancel()}" />
 
 
             </p:panel>

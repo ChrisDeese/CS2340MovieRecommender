@@ -16,14 +16,14 @@
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="name" value="Edit name" />
 
-                    <p:inputText id="name"  value="#{user.username}"
+                    <p:inputText id="name"  value="#{user.name}"
                                  required="false" label="First name">
 
                         <f:validateLength minimum="0"/>
                     </p:inputText>
                     <p:message for="name" display="Text" />
                     <p:outputLabel for="username" value="Edit User Name:" />
-                    <p:inputText id="username"
+                    <p:inputText id="username" value="#{user.username}"
                                  required="false" label="Username">
                         <f:validateLength minimum="0"/>
                     </p:inputText>

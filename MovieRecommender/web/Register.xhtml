@@ -14,14 +14,14 @@
             <p:panel id="panel" header="Registration for Movie Recommender" >
                 <p:messages id="msgs" />
                 <h:panelGrid columns="3" cellpadding="5">
-                    <p:outputLabel for="name" value="Email:" />
+                    <p:outputLabel for="name" value="Name:" />
 
-                    <p:inputText id="email"  value="#{user.email}"
-                                 required="false" label="Email Address">
+                    <p:inputText id="name"  value="#{user.name}"
+                                 required="false" label="Name Address">
 
                         <f:validateLength minimum="0"/>
                     </p:inputText>
-                    <p:message for="email" display="Text" />
+                    <p:message for="name" display="Text" />
                     <p:outputLabel for="username" value="User Name:" />
                     <p:inputText id="username"  value="#{user.username}"
                                  required="false" label="Username">

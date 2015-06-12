@@ -16,7 +16,7 @@ public class UserData {
 
     private String username;
     private String password;
-    private String email;
+    private String name;
     private boolean admin;
 
     //To add later
@@ -42,10 +42,10 @@ public class UserData {
     }
 
     /**
-     * Sets the email of this user
+     * Sets the name of this user
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

@@ -22,7 +22,7 @@ import javax.faces.context.Flash;
 public class User implements Serializable{
     private String username;
     private String password;
-    private String email;
+    private String name;
     private boolean admin;
 
     @ManagedProperty("#{userManager}")
@@ -53,11 +53,11 @@ public class User implements Serializable{
     }
 
     /**
-     * Returns email of this user
-     * @return email
+     * Returns name of this user
+     * @return name
      */
-    public String getEmail() {
-        return this.email;
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -82,7 +82,7 @@ public class User implements Serializable{
         UserData data = userManager.find(username);
 
         //password = this.getPassword();
-        System.out.println(this.password.length());
+        //System.out.println(this.password.length());
         //System.out.println(data);
         if (this.username.length() == 0 && this.getPassword().length()== 0) {
             username="";
@@ -145,10 +145,30 @@ public class User implements Serializable{
      * @return page redirect
      */
     public String register() {
-        if (username == null || password == null || email == null) {
-            System.out.println("Input is null.");
+        if (this.username.length() == 0 && this.getPassword().length() == 0) {
+            username="";
+            password="";
+            //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Username/Password/Email is null"));
+            context.addMessage(null, new FacesMessage("Username and "
+                    + "password field empty."
+                    + " Please fill out the required fields."));
+            return null;
+        } else if (this.getPassword().length() == 0) {
+            username="";
+            password="";
+            //System.out.println("No such user found or password wrong");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Password field empty."
+                    + " Please fill out the required fields."));
+            return null;
+        } else if (this.username.length() == 0) {
+            username="";
+            password="";
+            //System.out.println("No such user found or password wrong");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Username field empty."
+                    + " Please fill out the required fields."));
             return null;
         } else if (userManager.find(username) != null) {
             System.out.println("Username already taken, please choose another.");
@@ -158,11 +178,47 @@ public class User implements Serializable{
         }
 
         UserData data = new UserData(username, password);
-        data.setEmail(email);
+        data.setName(name);
         data.setAdmin(admin);
         userManager.addUser(data);
         System.out.println("Registration Success");
         return "index";
+    }
+
+    public String editProf() {
+        if (this.name.length() == 0) {
+            username="";
+            password="";
+            //System.out.println("No such user found or password wrong");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Name field empty."
+                    + " Please fill out the required fields."));
+            return null;
+        } else if (this.getPassword().length() == 0) {
+            username="";
+            password="";
+            //System.out.println("No such user found or password wrong");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Password field empty."
+                    + " Please fill out the required fields."));
+            return null;
+        } else if (this.username.length() == 0) {
+            username="";
+            password="";
+            //System.out.println("No such user found or password wrong");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Username field empty."
+                    + " Please fill out the required fields."));
+            return null;
+        }
+
+        UserData data = userManager.find(username);
+        data.setName(name);
+        data.setUsername(username);
+        data.setPassword(password);
+        data.setAdmin(admin);
+        System.out.println("Profile Edited");
+        return "viewProfile";
     }
 
     /**

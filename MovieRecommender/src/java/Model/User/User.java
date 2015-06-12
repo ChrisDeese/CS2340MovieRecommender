@@ -33,7 +33,10 @@ public class User implements Serializable{
      * Creates a new instance of User
      */
     public User() {
-
+        username = "";
+        oldUsername = "";
+        password = "";
+        name = "";
     }
 
     /**
@@ -218,7 +221,7 @@ public class User implements Serializable{
             context.addMessage(null, new FacesMessage("Username field empty."
                     + " Please fill out the required fields."));
             return null;
-        } else if (oldUsername.equals(username) || userManager.find(username) != null) {
+        } else if (!oldUsername.equals(username) || userManager.find(username) != null) {
             System.out.println("Username already taken, please choose another.");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username already taken"));

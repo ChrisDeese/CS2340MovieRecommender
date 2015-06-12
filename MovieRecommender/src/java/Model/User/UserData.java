@@ -31,6 +31,7 @@ public class UserData {
     UserData(String name, String pass) {
         this.username = name;
         this.password = pass;
+        this.name = "";
     }
 
     /**

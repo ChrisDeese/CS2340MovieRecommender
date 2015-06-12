@@ -21,6 +21,7 @@ import javax.faces.context.Flash;
 @SessionScoped
 public class User implements Serializable{
     private String username;
+    private String oldUsername;
     private String password;
     private String name;
     private boolean admin;
@@ -210,6 +211,11 @@ public class User implements Serializable{
             context.addMessage(null, new FacesMessage("Username field empty."
                     + " Please fill out the required fields."));
             return null;
+        } else if (oldUsername.equals(username) || userManager.find(username) != null) {
+            System.out.println("Username already taken, please choose another.");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Username already taken"));
+            return null;
         }
 
         UserData data = userManager.find(username);
@@ -217,6 +223,7 @@ public class User implements Serializable{
         data.setUsername(username);
         data.setPassword(password);
         data.setAdmin(admin);
+        oldUsername = username;
         System.out.println("Profile Edited");
         return "viewProfile";
     }

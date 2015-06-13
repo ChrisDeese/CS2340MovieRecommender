@@ -21,7 +21,6 @@ import javax.faces.context.Flash;
 @SessionScoped
 public class User implements Serializable{
     private String username;
-    private String oldUsername;
     private String password;
     private String name;
     private boolean admin;
@@ -34,7 +33,6 @@ public class User implements Serializable{
      */
     public User() {
         username = "";
-        oldUsername = "";
         password = "";
         name = "";
     }
@@ -52,7 +50,6 @@ public class User implements Serializable{
      * @return password
      */
     public String getPassword() {
-        //System.out.println(this.password);
         return this.password;
     }
 
@@ -66,6 +63,7 @@ public class User implements Serializable{
 
     /**
      * Sets the real name of this user
+     * @param name
      */
      public void setName(String name) {
         this.name =name;
@@ -73,6 +71,7 @@ public class User implements Serializable{
 
     /**
      * Sets username of this user
+     * @param username
      */
     public void setUsername(String un) {
         this.username = un;
@@ -80,11 +79,12 @@ public class User implements Serializable{
 
     /**
      * Sets password of this user
+     * @param password
      */
     public void setPassword(String p) {
         this.password = p;
     }
-    
+
     /**
      * Logs in user. If password is wrong, login fails
      * @return page redirect
@@ -92,9 +92,6 @@ public class User implements Serializable{
     public String login() {
         UserData data = userManager.find(username);
 
-        //password = this.getPassword();
-        //System.out.println(this.password.length());
-        //System.out.println(data);
         if (this.username.length() == 0 && this.getPassword().length()== 0) {
             username="";
             password="";
@@ -191,13 +188,16 @@ public class User implements Serializable{
         UserData data = new UserData(username, password);
         data.setName(name);
         data.setAdmin(admin);
-        data.setPrevUN(username);
         userManager.addUser(data);
         oldUsername = data.getPrevUN();
         System.out.println("Registration Success");
         return "index";
     }
 
+    /**
+     * Edits the profile of the user, including name, password, and admin privileges
+     * @return page redirect
+     */
     public String editProf() {
         if (this.name.length() == 0) {
             username="";
@@ -215,25 +215,10 @@ public class User implements Serializable{
             context.addMessage(null, new FacesMessage("Password field empty."
                     + " Please fill out the required fields."));
             return null;
-        } else if (this.username.length() == 0) {
-            username="";
-            password="";
-            //System.out.println("No such user found or password wrong");
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Username field empty."
-                    + " Please fill out the required fields."));
-            return null;
-        } else if (oldUsername.equals(username) || userManager.find(username) != null) {
-            System.out.println("Username already taken, please choose another.");
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Username already taken"));
-            return null;
         }
 
-        UserData data = userManager.find(oldUsername);
-        oldUsername = username;
+        UserData data = userManager.find(username);
         data.setName(name);
-        data.setUsername(username);
         data.setPassword(password);
         data.setAdmin(admin);
         System.out.println("Profile Edited");
@@ -251,6 +236,7 @@ public class User implements Serializable{
 
     /**
      * Sets the user manager for this user, which is used as the database
+     * @param userManager
      */
     public void setUserManager(UserManager um) {
         userManager = um;

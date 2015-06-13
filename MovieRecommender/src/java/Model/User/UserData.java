@@ -17,12 +17,10 @@ public class UserData {
     private String username;
     private String password;
     private String name;
-    private String prevUN;
     private boolean admin;
 
     //To add later
-    /*private String name;
-    private String bio;
+    /*private String bio;
     private String location;
     private int age;*/
 
@@ -32,7 +30,6 @@ public class UserData {
     UserData(String name, String pass) {
         this.username = name;
         this.password = pass;
-        this.prevUN = name;
         this.name = "";
     }
 
@@ -46,6 +43,7 @@ public class UserData {
 
     /**
      * Sets the name of this user
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
@@ -53,15 +51,12 @@ public class UserData {
 
     /**
      * Sets whether this user has admin privileges
+     * @param adminPriv
      */
     public void setAdmin(boolean b) {
         this.admin = b;
     }
 
-    public void setPrevUN(String s) {
-        this.prevUN = s;
-    }
-    
     /**
      * Gets the username of this user
      * @return username
@@ -69,15 +64,19 @@ public class UserData {
     public String getUsername() {
         return username;
     }
-    
-    public String getPrevUN() {
-        return prevUN;
-    }
-    
+
+    /**
+     * Sets the username of this user
+     * @param username
+     */
     public void setUsername(String un) {
-        this.username = un;
+        this.username = username;
     }
-    
+
+    /**
+     * Sets the password of this user
+     * @param password
+     */
     public void setPassword(String pw) {
         this.password = pw;
     }

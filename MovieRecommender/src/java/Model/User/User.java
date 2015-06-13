@@ -20,8 +20,8 @@ import javax.faces.context.Flash;
 @ManagedBean
 @SessionScoped
 public class User implements Serializable{
-    private String username;
-    private String password;
+    private String username="";
+    private String password="";
     
 
     
@@ -54,8 +54,7 @@ public class User implements Serializable{
     
     public String login() {
         UserData data = userManager.find(username);
-        //password = this.getPassword();
-        System.out.println(this.password.length());
+        password = this.getPassword();
         //System.out.println(data);
         if (this.username.length() == 0 && this.getPassword().length()== 0) {
             username="";

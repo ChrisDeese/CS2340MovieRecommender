@@ -2,52 +2,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"         
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Edit Profile</title>
-        <link href="style.css" rel="stylesheet" type="text/css" />
-        
+
     </h:head>
     <h:body><center>
         <h:form>
-            
-            <p:panel id="panel" header="Edit Profile" style="width: 850px; height: 850px" >
+            <p><b> Edit your profile information</b></p>
+            <p:panel id="panel" header="Edit Profile" >
                 <p:messages id="msgs" />
-                <p><b> Edit your profile information</b></p>
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="name" value="Edit name" />
-   
-                    <p:inputText id="name"  
+
+                    <p:inputText id="name"  value="#{user.name}"
                                  required="false" label="First name">
-                        
+
                         <f:validateLength minimum="0"/>
                     </p:inputText>
                     <p:message for="name" display="Text" />
-                    <p:outputLabel for="username" value="Edit User Name:" />
-                    <p:inputText id="username"  
-                                 required="false" label="Username">
-                        <f:validateLength minimum="0"/>
-                    </p:inputText>
-                        
-                    <p:message for="username" display="icon" />
-                    
+
                     <p:outputLabel for="password" value="Edit Password" />
-                    <p:password id="password"  
-                                label="Password" required="false" 
+                    <p:password id="password"  value="#{user.password}"
+                                label="Password" required="false"
                                 feedback="true">
                         <f:validateLength minimum="0" />
                     </p:password>
-                    
+
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
-               
-                <p:commandButton update="panel" value="Submit" 
-                             icon="ui-icon-check" action = "index" />
+
+                <p:commandButton update="panel" value="Submit"
+                             icon="ui-icon-check" action = "#{user.editProf()}" />
                 <p:commandButton update="panel" value="Delete Changes" action="index" />
-                
-                
-            </p:panel>  
+
+
+            </p:panel>
         </h:form>
         </center></h:body>
 </html>

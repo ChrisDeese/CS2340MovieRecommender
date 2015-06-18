@@ -6,12 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Edit Profile</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
 
     </h:head>
     <h:body><center>
         <h:form>
-            <p><b> Edit your profile information</b></p>
-            <p:panel id="panel" header="Edit Profile" >
+            
+            <p:panel id="panel" style="width: 850px; height: 850px">
+                <p><b> Edit your profile information</b></p>
                 <p:messages id="msgs" />
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="name" value="Edit name" />

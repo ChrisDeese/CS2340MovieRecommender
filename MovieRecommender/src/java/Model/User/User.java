@@ -136,7 +136,7 @@ public class User implements Serializable{
         flash.setRedirect(true);
         facesContext.addMessage(null, new FacesMessage(
         "You successfully logged in!",""));
-            return "index";
+            return "index.xhtml?faces-redirect=true";
     }
 
     /**

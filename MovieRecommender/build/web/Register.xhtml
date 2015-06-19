@@ -18,15 +18,8 @@
                 <p><b> Enter your name, a unique username, and password</b></p>
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="name" value="Name:" />
-<<<<<<< HEAD
-   
                     <p:inputText id="name" value="#{user.name}" 
                                  required="false" label="First name">
-                        
-=======
-                    <p:inputText id="name"  value="#{user.name}"
-                                 required="false" label="Name">
->>>>>>> master
                         <f:validateLength minimum="0"/>
                     </p:inputText>
                     <p:message for="name" display="Text" />
@@ -39,20 +32,14 @@
                     <p:message for="username" display="icon" />
 
                     <p:outputLabel for="password" value="Password:" />
-<<<<<<< HEAD
                     <p:password id="password" value="#{user.password}"
                                 label="Password" required="false" 
-=======
-                    <p:password id="password"  value="#{user.password}"
-                                label="Password" required="false"
->>>>>>> master
                                 feedback="true">
                         <f:validateLength minimum="0" />
                     </p:password>
 
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
-<<<<<<< HEAD
                
                 <p:commandButton update="panel" value="Submit" 
                              icon="ui-icon-check" action = "#{user.register()}" />
@@ -60,15 +47,6 @@
                 
                 
             </p:panel>  
-=======
-
-                <p:commandButton update="panel" value="Submit"
-                             icon="ui-icon-check" action = "#{user.register()}" />
-                <p:commandButton update="panel" value="Cancel Registration" action="#{user.cancel()}" />
-
-
-            </p:panel>
->>>>>>> master
         </h:form>
         </center></h:body>
 </html>

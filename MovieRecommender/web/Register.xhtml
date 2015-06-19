@@ -2,45 +2,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"         
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
     <h:head>
+        <link href="style.css" rel="stylesheet" type="text/css" />
         <title>Login Page</title>
-        
+
     </h:head>
     <h:body><center>
-        <h:form>       
-            <p:panel id="panel" header="Login to Movie Recommender" >
+        <h:form>
+ 
+            <p:panel id="panel" header="Registration for Movie Recommender" style="width: 850px; height: 850px">
                 <p:messages id="msgs" />
+                <p><b> Enter your name, a unique username, and password</b></p>
                 <h:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{user.name}" 
+                                 required="false" label="First name">
+                        <f:validateLength minimum="0"/>
+                    </p:inputText>
+                    <p:message for="name" display="Text" />
                     <p:outputLabel for="username" value="User Name:" />
-                    <p:inputText id="username" value="#{user.username}" 
+                    <p:inputText id="username"  value="#{user.username}"
                                  required="false" label="Username">
                         <f:validateLength minimum="0"/>
                     </p:inputText>
-                        
+
                     <p:message for="username" display="icon" />
-                    
+
                     <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{user.password}" 
+                    <p:password id="password" value="#{user.password}"
                                 label="Password" required="false" 
-                                feedback="false">
+                                feedback="true">
                         <f:validateLength minimum="0" />
                     </p:password>
-                    
+
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
                
                 <p:commandButton update="panel" value="Submit" 
-                             icon="ui-icon-check" action ="#{user.login()}" />
-                <p:commandButton update="panel" value="Cancel Login" action="#{user.cancel()}" />
-                
-                
- 
+                             icon="ui-icon-check" action = "#{user.register()}" />
+                <p:commandButton update="panel" value="Cancel Registration" action="#{user.cancel()}" />
                 
                 
             </p:panel>  
         </h:form>
         </center></h:body>
 </html>
-

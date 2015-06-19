@@ -25,6 +25,8 @@ public class User implements Serializable{
     private String name;
     private boolean admin;
 
+    private String input;
+
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
 
@@ -35,6 +37,7 @@ public class User implements Serializable{
         username = "";
         password = "";
         name = "";
+        input = "";
     }
 
     /**

@@ -6,6 +6,8 @@ import org.json.simple.JSONObject;
  */
 public class Movie {
     private JSONObject json;
+    private String title;
+    private String id;
 
     //TODO
     //Cast
@@ -18,6 +20,8 @@ public class Movie {
      */
     public Movie(JSONObject json) {
         this.json = json;
+        this.title = (String) json.get("title");
+        this.id = (String) json.get("id");
     }
 
     /**
@@ -33,7 +37,7 @@ public class Movie {
      * @return title
      */
     public String getTitle() {
-        return json.get("title");
+        return (String) json.get("title");
     }
 
     /**
@@ -41,15 +45,15 @@ public class Movie {
      * @return mpaa_rating
      */
     public String getMPAA() {
-        return json.get("mpaa_rating");
+        return (String) json.get("mpaa_rating");
     }
 
     /**
-     * Gets the theatre release date of this movie
-     * @return release_date_theatre
+     * Gets the theater release date of this movie
+     * @return release_date_theater
      */
     public String getReleaseT() {
-        return json.get("release_dates");   //This isn't right, need to fix later
+        return (String) json.get("release_dates.theater");
     }
 
     /**
@@ -57,7 +61,7 @@ public class Movie {
      * @return release_date_dvd
      */
     public String getReleaseD() {
-        return json.get("release_dates");   //This isn't right, need to fix later
+        return (String) json.get("release_dates.dvd");
     }
 
     /**
@@ -65,7 +69,7 @@ public class Movie {
      * @return synopsis
      */
     public String getSynopsis() {
-        return json.get("synopsis");
+        return (String) json.get("synopsis");
     }
 
     /**
@@ -73,7 +77,7 @@ public class Movie {
      * @return director
      */
     public String getDirector() {
-        return json.get("director");
+        return (String) json.get("director");
     }
 
     /**
@@ -81,7 +85,7 @@ public class Movie {
      * @return studio
      */
     public String getStudio() {
-        return json.get("studio");
+        return (String) json.get("studio");
     }
 
     /**
@@ -89,7 +93,7 @@ public class Movie {
      * @return runtime
      */
     public int getRuntime() {
-        return json.get("runtime");
+        return (int) json.get("runtime");
     }
 
     /**
@@ -97,7 +101,7 @@ public class Movie {
      * @return critics_consensus
      */
     public String getConsensus() {
-        return json.get("critics_consensus");
+        return (String) json.get("critics_consensus");
     }
 
     /**
@@ -105,7 +109,7 @@ public class Movie {
      * @return critics_rating
      */
     public String getCRating() {
-        return json.get("critics_rating");
+        return (String) json.get("critics_rating");
     }
 
     /**
@@ -113,7 +117,7 @@ public class Movie {
      * @return audience_rating
      */
     public String getARating() {
-        return json.get("audience_rating");
+        return (String) json.get("audience_rating").;
     }
 
     /**
@@ -121,7 +125,7 @@ public class Movie {
      * @return critics_score
      */
     public int getCScore() {
-        return json.get("critics_score");
+        return (int) json.get("critics_score");
     }
 
     /**
@@ -129,7 +133,7 @@ public class Movie {
      * @return audience_score
      */
     public String getAScore() {
-        return json.get("audience_score");
+        return (String) json.get("audience_score");
     }
 
     /**
@@ -137,7 +141,7 @@ public class Movie {
      * @return thumbnail
      */
     public String getThumbnail() {
-        return json.get("thumbnail");
+        return (String) json.get("thumbnail");
     }
 
     //TODO
@@ -164,6 +168,6 @@ public class Movie {
      * @return original
      */
     public String getOriginal() {
-        return json.get("original");
+        return (String) json.get("original");
     }
 }

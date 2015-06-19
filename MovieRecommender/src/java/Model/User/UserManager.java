@@ -18,19 +18,38 @@ import javax.faces.bean.ApplicationScoped;
 @ApplicationScoped
 public class UserManager {
 
-    
+
     private Map<String, UserData> users = new HashMap<>();
-    
-    
+
+
     /**
      * Creates a new instance of UserManager
      */
     public UserManager() {
-        users.put("user", new UserData("user", "pass"));
+        //users.put("user", new UserData("user", "pass"));
     }
-    
+
+    /**
+     * Finds a user in the database using a username key
+     * @return user if username is database, null otherwise
+     */
     UserData find(String username) {
         return users.get(username);
     }
-    
+
+    /**
+     * Adds user to the database
+     */
+    public void addUser(UserData user) {
+        users.put(user.getUsername(), user);
+    }
+
+    /**
+     * Prints a list of all the users in the database
+     */
+    public void userList() {
+        for (String name : users.keySet()) {
+            System.out.println(name);
+        }
+    }
 }

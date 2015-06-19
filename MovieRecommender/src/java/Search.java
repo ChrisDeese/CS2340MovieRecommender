@@ -28,6 +28,7 @@ public class Search {
      * Sets the name of this user
      * @param name
      */
+
     public List<Movie> find(String movie) {
         URL jsonRequest = new URL("http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=yedukp76ffytfuy24zsqk7f5&q=" + movie + "&page_limit=20");
         URLConnection connection = jsonRequest.openConnection();

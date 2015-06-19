@@ -5,16 +5,58 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        <link href="style.css" rel="stylesheet" type="text/css" />
         <title>Welcome</title>
 
     </h:head>
     <h:body><center>
-        <h:form>
-            <p:panel id="panel" header="Welcome to Movie Recommender">
+         
+            
+            <p:panel id="panel" style="width: 850px; height: 850px">
+                <f:facet name="header" >
+                    <img src="WelcomeText.png" height="150"/>
+                </f:facet>
+   
+                
                 <p> What would you like to do?</p>
-
-                <p:commandButton update="panel" value="Login" action="login" />
+               
+                <p:commandButton value="Login" action="#{user.login()}">
+        <p:confirm  header="Login" message="Insert username and password below to login."
+                   icon="ui-icon-alert" />
+    </p:commandButton>
+ 
+    <p:confirmDialog id = "confirm" global="true" showEffect="fade" hideEffect="fade"><h:form>
+        <p:panel id="panel1" >
+                <p:growl id="msgs" />
+        <h:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel for="username" value="User Name:" />
+                    <p:inputText id="username" value="#{user.username}" 
+                                 required="false" label="username">
+                        <f:validateLength minimum="0"/>
+                    </p:inputText>
+                        
+                    <p:message for="username" display="icon" />
+                    
+                    <p:outputLabel for="password" value="Password:" />
+                    <p:password id="password" value="#{user.password}" 
+                                label="Password" required="false" 
+                                feedback="false">
+                        <f:validateLength minimum="0" />
+                    </p:password>
+                    
+                    
+                    <p:message for="password" display="Text" />
+                </h:panelGrid>
+               
+                <p:commandButton update="panel1" value="Submit" 
+                             icon="ui-icon-check" action ="#{user.login()}" />
+                <p:commandButton update="panel1" value="Cancel Login" action="#{user.cancel()}" />
+    </p:panel>
+        </h:form>
+    </p:confirmDialog>
                 <p:commandButton update="panel" value="Register" action = "Register" />
+               
+              
 
             </p:panel>
         </h:form>

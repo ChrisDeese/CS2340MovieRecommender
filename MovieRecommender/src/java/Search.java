@@ -2,7 +2,6 @@
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.ArrayList;
-import Model.User.UserData;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -28,19 +27,15 @@ public class Search implements Serializable {
 
     /**
      * Creates a new instance of a Search
-     * @param user
      */
     public Search() {
         parser = new JSONParser();
     }
 
-    //TODO
-    //Get more than one response
     /**
-     * Sets the name of this user
-     * @param name
+     * Finds a list of movies that match a string passed in
+     * @param movie title
      */
-
     public void find(String movie) throws IOException {
         URL jsonRequest = null;
         try {
@@ -48,13 +43,13 @@ public class Search implements Serializable {
         } catch (MalformedURLException ex) {
             Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         URLConnection connection = jsonRequest.openConnection();
         connection.setDoOutput(true);
-        JSONArray json;
-        try (Scanner scanner = new Scanner(jsonRequest.openStream())) {
-            String response = scanner.useDelimiter("\\Z").next();
-            json = (JSONArray) Util.parseJson(response);
-        }
+        Scanner scanner = new Scanner(jsonRequest.openStream()))
+        String response = scanner.useDelimiter("\\Z").next();
+        JSONObject jsonO = new JSONObject(response);
+        JSONArray json = jsonO.getJSONArray("movies");
 
         List<Movie> results = new ArrayList<Movie>();
         for (int c = 1; c < json.size(); c++) {
@@ -64,13 +59,23 @@ public class Search implements Serializable {
         movies = results;
     }
 
+    /**
+     * Sets the movie list to a list of the newest movies in theaters
+     */
     public void newTheater() throws MalformedURLException {
-        URL jsonRequest = new URL("http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=20");
+        URL jsonRequest = null
+        try {
+            jsonRequest = new URL("http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=20");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         URLConnection connection = jsonRequest.openConnection();
         connection.setDoOutput(true);
         Scanner scanner = new Scanner(jsonRequest.openStream());
         String response = scanner.useDelimiter("\\Z").next();
-        JSONArray json = (JSONArray) Util.parseJson(response);
+        JSONObject jsonO = new JSONObject(response);
+        JSONArray json = jsonO.getJSONArray("movies");
         scanner.close();
 
         List<Movie> results = new ArrayList<Movie>();
@@ -81,13 +86,23 @@ public class Search implements Serializable {
         movies = results;
     }
 
+    /**
+     * Sets the movie list to a list of the newest movies on DVD
+     */
     public void newDVD() {
-        URL jsonRequest = new URL("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=20");
+        URL jsonRequest = null;
+        try {
+            jsonRequest = new URL("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=20");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         URLConnection connection = jsonRequest.openConnection();
         connection.setDoOutput(true);
-        Scanner scanner = new Scanner(wikiRequest.openStream());
+        Scanner scanner = new Scanner(jsonRequest.openStream());
         String response = scanner.useDelimiter("\\Z").next();
-        JSONArray json = (JSONArray) Util.parseJson(response);
+        JSONObject jsonO = new JSONObject(response);
+        JSONArray json = jsonO.getJSONArray("movies");
         scanner.close();
 
         List<Movie> results = new ArrayList<Movie>();
@@ -98,6 +113,10 @@ public class Search implements Serializable {
         movies = results;
     }
 
+    /**
+     * Returns the list saved by this search object
+     * @return movie list
+     */
     public List<Movie> getMovies() {
         return movies;
     }

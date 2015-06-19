@@ -1,3 +1,6 @@
+
+import org.json.simple.JSONObject;
+
 /**
  * @author jacob
  */
@@ -22,7 +25,7 @@ public class Movie {
      * @return id
      */
     public int getID() {
-        return json.get("id");
+        return (int) json.get("id");
     }
 
     /**

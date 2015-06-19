@@ -3,6 +3,8 @@
  */
 public class Movie {
     private JSONObject json;
+    private String title;
+    private String id;
 
     //TODO
     //Cast
@@ -15,6 +17,8 @@ public class Movie {
      */
     public Movie(JSONObject json) {
         this.json = json;
+        this.title = json.get("title");
+        this.id = json.get("id");
     }
 
     /**
@@ -42,11 +46,11 @@ public class Movie {
     }
 
     /**
-     * Gets the theatre release date of this movie
-     * @return release_date_theatre
+     * Gets the theater release date of this movie
+     * @return release_date_theater
      */
     public String getReleaseT() {
-        return json.get("release_dates");   //This isn't right, need to fix later
+        return json.get("release_dates.theater");
     }
 
     /**
@@ -54,7 +58,7 @@ public class Movie {
      * @return release_date_dvd
      */
     public String getReleaseD() {
-        return json.get("release_dates");   //This isn't right, need to fix later
+        return json.get("release_dates.dvd");
     }
 
     /**

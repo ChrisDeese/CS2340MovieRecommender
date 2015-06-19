@@ -189,7 +189,6 @@ public class User implements Serializable{
         data.setName(name);
         data.setAdmin(admin);
         userManager.addUser(data);
-        //oldUsername = data.getPrevUN();
         System.out.println("Registration Success");
         return "index";
     }

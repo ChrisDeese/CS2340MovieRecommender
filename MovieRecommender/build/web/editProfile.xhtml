@@ -22,13 +22,6 @@
                         <f:validateLength minimum="0"/>
                     </p:inputText>
                     <p:message for="name" display="Text" />
-                    <p:outputLabel for="username" value="Edit User Name:" />
-                    <p:inputText id="username" value="#{user.username}"
-                                 required="false" label="Username">
-                        <f:validateLength minimum="0"/>
-                    </p:inputText>
-
-                    <p:message for="username" display="icon" />
 
                     <p:outputLabel for="password" value="Edit Password" />
                     <p:password id="password"  value="#{user.password}"

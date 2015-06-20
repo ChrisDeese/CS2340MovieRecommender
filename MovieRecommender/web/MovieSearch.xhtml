@@ -29,7 +29,7 @@
                     </h:panelGrid>
                 <h:panelGrid columns="2" cellpadding="5">
                 <p:commandButton update="panel" value="Submit"
-                             icon="ui-icon-check" action="#{search.find()}" action = "SearchResults"/>
+                             icon="ui-icon-check" action="#{search.find(search.input)}"/>
                 <p:commandButton update="panel" value="Back"
                              action = "index"/>
                 </h:panelGrid>
@@ -37,8 +37,8 @@
                     <p>Or find new movies releases and DVD's</p>
 
 
-                <p:commandButton update="panel" value="Find new movie releases" action="#{search.newTheater()}" action ="newMovies"  />
-                <p:commandButton update="panel" value="Find new DVD's"  action="#{search.newDVD()}" action ="newDVDs" />
+                <p:commandButton update="panel" value="Find new movie releases" action="#{search.newTheater()}"/>
+                <p:commandButton update="panel" value="Find new DVD's"  action="#{search.newDVD()}"/>
 
 
 

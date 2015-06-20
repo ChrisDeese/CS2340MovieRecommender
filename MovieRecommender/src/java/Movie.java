@@ -117,7 +117,7 @@ public class Movie {
      * @return audience_rating
      */
     public String getARating() {
-        return (String) json.get("audience_rating").;
+        return (String) json.get("audience_rating");
     }
 
     /**

@@ -12,22 +12,12 @@
     </h:head>
     <h:body><center><h:form>
             <p:panel id="panel" header="Welcome to Movie Recommender" style="width: 850px; height: 850px">
-                <p> Here is a list of all movies that match your search results</p>
+                <p> Here is a list of recommended movies based off of your ratings
+                </p>
                 
-                <ul>
-                    <ui:repeat value="#{search.movies}" var="movie">
-                        <li>
-                            
-                            <h:link value="#{movie.title}" outcome="movie">
-                                
-                                <f:param name="id" value="#{movie.id}"></f:param>
-                                <h:commandLink action="RateMovie" value="more info on #{movie.title}"/>
-                            </h:link>
-                        </li>
-                    </ui:repeat>
-                </ul>
+                
 
-                <p:commandButton value="back" action="MovieSearch" update="panel"/>
+                <p:commandButton value="back" action="index" update="panel"/>
 
 
             </p:panel>

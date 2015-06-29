@@ -5,6 +5,7 @@
  */
 package Model.User;
 
+
 /**
  *
  * @author chris
@@ -17,13 +18,20 @@ public class UserData {
     private String username;
     private String password;
     private String name;
+    private String major;
     private boolean admin;
+    private boolean banned;
+    private int userId;
 
     //To add later
     /*private String bio;
     private String location;
     private int age;*/
 
+    
+    UserData() {
+        
+    }
     /**
      * Creates a new instance of User
      */
@@ -42,6 +50,34 @@ public class UserData {
     }
 
     /**
+     * Set major
+     * @param major 
+     */
+    public void setMajor(String major) {
+        this.major = major;
+    }
+    
+    public String getMajor() {
+        return major;
+    }
+ 
+    public int getUserId() {
+        return this.userId;
+    }
+    
+    public void setUserId(int id) {
+        this.userId = id;
+    }
+    
+    public boolean getBanned() {
+        return this.banned;
+    }    
+    
+    public void setBanned(boolean bool) {
+        this.banned=bool;
+    }
+       
+    /**
      * Sets the name of this user
      * @param name
      */
@@ -49,6 +85,10 @@ public class UserData {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name; 
+    }
+    
     /**
      * Sets whether this user has admin privileges
      * @param adminPriv
@@ -56,13 +96,17 @@ public class UserData {
     public void setAdmin(boolean b) {
         this.admin = b;
     }
+    
+    public boolean getAdmin() {
+        return this.admin;
+    }
 
     /**
      * Gets the username of this user
      * @return username
      */
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     /**
@@ -79,6 +123,10 @@ public class UserData {
      */
     public void setPassword(String pw) {
         this.password = pw;
+    }
+    
+    public String getPassword() {
+        return this.password;
     }
 
     /*public String getName() {

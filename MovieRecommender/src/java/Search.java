@@ -19,6 +19,11 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -30,12 +35,19 @@ public class Search implements Serializable {
     private JSONParser parser;
     private String input;
     private List<Movie> movies;
+    private static SessionFactory factory;
 
     /**
      * Creates a new instance of a Search
      */
     public Search() {
         parser = new JSONParser();
+        try{
+         factory = new Configuration().configure().buildSessionFactory();
+      }catch (Throwable ex) { 
+         System.err.println("Failed to create sessionFactory object." + ex);
+         throw new ExceptionInInitializerError(ex); 
+      }
     }
     
     /**
@@ -86,6 +98,7 @@ public class Search implements Serializable {
         }
 
         movies = results;
+        addMovies();
         return "SearchResults";
     }
 
@@ -122,6 +135,7 @@ public class Search implements Serializable {
         }
 
         movies = results;
+        addMovies();
         return "newDVDs";
     }
 
@@ -194,4 +208,24 @@ public class Search implements Serializable {
     public List<Movie> getMovies() {
         return movies;
     }
+    
+    public void addMovies() {
+        
+        for (Movie m: movies) {
+            Session session = factory.openSession();
+        Transaction tx = null;
+                try {
+            tx = session.beginTransaction();
+            session.save(m);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+                    session.close();
+                }
+        }
+        
+    }
+    
 }

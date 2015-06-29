@@ -12,10 +12,12 @@
     </h:head>
     <h:body><center><h:form>
             <p:panel id="panel" header="Welcome to Movie Recommender" style="width: 850px; height: 850px">
-                <p>#{movie.title} </p>
-                <p:rating value="#{movie.getRating()}" onRate="#{movie.rateMovie(value)}"/>
+                <p> Here is a list of recommended movies based off of your ratings
+                </p>
+                
+                
 
-                <p:commandButton value="back" action="MovieSearch" update="panel"/>
+                <p:commandButton value="back" action="index" update="panel"/>
 
 
             </p:panel>

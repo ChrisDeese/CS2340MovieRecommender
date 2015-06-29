@@ -5,14 +5,18 @@
         <group>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/editProfile.xhtml</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Movie.java</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/newDVDs.xhtml</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Model/User/User.java</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/User.hbm.xml</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Search.java</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/MovieSearch.xhtml</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/index.xhtml</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/Register.xhtml</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/RateMovie.xhtml</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/Recommended.xhtml</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Model/User/UserData.java</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Model/User/User.java</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/MovieSearch.xhtml</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/newMovies.xhtml</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/ViewProfile.xhtml</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Model/User/UserManager.java</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Movies.hbm.xml</file>
         </group>
     </open-files>
 </project-private>

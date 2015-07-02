@@ -44,6 +44,10 @@ public class UserManager {
         createUserMap();
     }
     
+    /**
+     * returns the User Map for Usermanager
+     * @return 
+     */
     Map<String, UserData> getMap() {
         return this.users;
     }
@@ -85,6 +89,9 @@ public class UserManager {
         }
     }
     
+    /**
+     * Creates UserMap from the database on construction
+     */
     public void createUserMap() {
         Session session = factory.openSession();
         Query query = session.createQuery("from UserData");

@@ -55,11 +55,19 @@ public class User implements Serializable{
       }
     }
     
+    /**
+     * returns the major of the user
+     * @return 
+     */
     public String getMajor() {
         UserData u = userManager.getMap().get(this.username);
         return u.getMajor();
     }
     
+    /**
+     * sets the major of the user
+     * @param major 
+     */
     public void setMajor(String major) {
         this.major = major;
     }

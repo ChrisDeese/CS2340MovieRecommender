@@ -46,7 +46,7 @@ public class Movie {
         this.setRatingCount(this.getRatingCount() + 1);
          this.setRatingTotal(this.getRatingTotal() + i);
         this.setRating(this.getRatingTotal() / this.getRatingCount());
-         /**try{
+         try{
          factory2 = new Configuration().configure().buildSessionFactory();
       }catch (Throwable ex) { 
          System.err.println("Failed to create sessionFactory object." + ex);
@@ -63,7 +63,7 @@ public class Movie {
          mov.setRatingTotal(mov.getRatingTotal() + i);
          mov.setRating(mov.getRatingTotal() / mov.getRatingCount());
          session.save(mov);
-         tx.commit();**/
+         tx.commit();
     }
 
     /**

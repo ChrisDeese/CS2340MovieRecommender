@@ -4,18 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Movie.java</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Model/User/User.java</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/SearchResults.xhtml</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/MajorRecommended.xhtml</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Search.java</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/index.xhtml</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/RateMovie.xhtml</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/Recommended.xhtml</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/Register.xhtml</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/MovieAggregator.java</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Model/User/UserData.java</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Model/User/User.java</file>
             <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Model/User/UserManager.java</file>
-            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/src/java/Movies.hbm.xml</file>
+            <file>file:/home/chris/Documents/CS2340MovieRecommender/MovieRecommender/web/ViewProfile.xhtml</file>
         </group>
     </open-files>
 </project-private>

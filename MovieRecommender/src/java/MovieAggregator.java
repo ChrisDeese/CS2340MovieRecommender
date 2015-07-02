@@ -19,7 +19,7 @@ import org.hibernate.cfg.Configuration;
  */
 
 /**
- *
+ * Class to aggregate movies for recommendations
  * @author chris
  */
 @ManagedBean (name = "movieAggregator")
@@ -30,6 +30,9 @@ public class MovieAggregator {
     private Map<String, Movie> movies = new HashMap<>();
     private List<Movie> Recommendations;
     
+    /**
+     * Constructor for MovieAggregator
+     */
     public MovieAggregator() {
         try{
          factory = new Configuration().configure().buildSessionFactory();
@@ -40,10 +43,18 @@ public class MovieAggregator {
         createMovieMap();
     }
     
+    /**
+     * finds a movie based on its movieId
+     * @param movieId
+     * @return 
+     */
     Movie find(String movieId) {
         return movies.get(movieId);
     }
     
+    /**
+     * Creates map of the Movies in the database
+     */
     public void createMovieMap() {
         Session session = factory.openSession();
         Query query = session.createQuery("from Movie");
@@ -56,6 +67,10 @@ public class MovieAggregator {
         System.out.println(movies.size());
     }
     
+    /**
+     * Creates Recommendations based on highest rated movies
+     * @return 
+     */
     public List makeRecommendations() {
         Recommendations = new ArrayList<Movie>();
         for (String s: movies.keySet()) {
@@ -66,6 +81,11 @@ public class MovieAggregator {
         return Recommendations;
     }
     
+    /**
+     * Creates Recommendations based on major
+     * @param major
+     * @return 
+     */
     public List makeMajorRecommendations(String major) {
        Recommendations = new ArrayList<Movie>();
         for (String s: movies.keySet()) {
@@ -79,6 +99,10 @@ public class MovieAggregator {
         return Recommendations; 
     }
     
+    /**
+     * go back to previous page (fixes session)
+     * @return 
+     */
     public String goBack() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "welcomePage.xhtml?faces-redirect=true";

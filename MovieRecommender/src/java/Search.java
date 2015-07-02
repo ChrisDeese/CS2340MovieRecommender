@@ -174,6 +174,12 @@ public class Search implements Serializable {
         return "newMovies";
     }
     
+    /**
+     * Send get request to the RT API
+     * @param url
+     * @return
+     * @throws Exception 
+     */
     private String sendGet(URL url) throws Exception{
         URL obj = url;
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -209,6 +215,9 @@ public class Search implements Serializable {
         return movies;
     }
     
+    /**
+     * Adds movies to the database
+     */
     public void addMovies() {
         
         for (Movie m: movies) {

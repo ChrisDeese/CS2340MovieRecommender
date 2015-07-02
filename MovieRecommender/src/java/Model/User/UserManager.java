@@ -43,6 +43,10 @@ public class UserManager {
       }
         createUserMap();
     }
+    
+    Map<String, UserData> getMap() {
+        return this.users;
+    }
 
     /**
      * Finds a user in the database using a username key
@@ -87,6 +91,7 @@ public class UserManager {
         List<UserData> userList = query.list();
         for (UserData u : userList) {
             System.out.println(u.getUsername());
+            System.out.println(u.getMajor());
             
             users.put(u.getName(), u);
         }

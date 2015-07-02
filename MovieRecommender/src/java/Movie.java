@@ -75,11 +75,12 @@ public class Movie {
     }
     
     public String getMajor() {
+        
         return this.major;
     }
     
     public void setMajor(String s) {
-        this.major = major;
+        this.major = s;
     }
     
     /**

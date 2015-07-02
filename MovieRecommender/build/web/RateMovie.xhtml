@@ -15,7 +15,7 @@
                 <p>#{movie.title} </p>
                 <p:rating value="#{movie.getRating()}" onRate="#{movie.rateMovie(value)}"/>
 
-                <p:commandButton value="back" action="MovieSearch" update="panel"/>
+                <p:commandButton value="back" action="#{movieAggregator.goBack()}" update="panel"/>
 
 
             </p:panel>

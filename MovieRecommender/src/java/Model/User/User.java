@@ -54,6 +54,14 @@ public class User implements Serializable{
          throw new ExceptionInInitializerError(ex); 
       }
     }
+    
+    public String getMajor() {
+        return this.major;
+    }
+    
+    public void setMajor(String major) {
+        this.major = major;
+    }
 
     /**
      * Returns username of this user

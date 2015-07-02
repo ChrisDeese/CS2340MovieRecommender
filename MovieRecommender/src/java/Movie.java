@@ -132,7 +132,7 @@ public class Movie {
      * @return id
      */
     public String getId() {
-        return (String) json.get("id");
+        return this.Id;
     }
 
     public void setId(String id) {
@@ -144,7 +144,7 @@ public class Movie {
      * @return title
      */
     public String getTitle() {
-        return (String) json.get("title");
+        return this.title;
     }
 
     /**

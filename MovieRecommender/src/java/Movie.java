@@ -1,4 +1,11 @@
 
+import Model.User.UserData;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import org.json.simple.JSONObject;
 
 /**
@@ -7,13 +14,24 @@ import org.json.simple.JSONObject;
 public class Movie {
     private JSONObject json;
     private String title;
-    private String id;
+    private String Id;
+    private int rating;
+    private int movieId;
+    private int ratingTotal;
+    private int ratingCount;
+    private String major;
+    
+    private static SessionFactory factory2;
 
     //TODO
     //Cast
     //Reviews
     //Clips
 
+    public Movie() {
+        
+    }
+    
     /**
      * Creates a new instance of a Movie
      * @param json
@@ -21,23 +39,113 @@ public class Movie {
     public Movie(JSONObject json) {
         this.json = json;
         this.title = (String) json.get("title");
-        this.id = (String) json.get("id");
+        this.Id = (String) json.get("id");
+    }
+    
+    public void rateMovie(int i) {
+        this.setRatingCount(this.getRatingCount() + 1);
+         this.setRatingTotal(this.getRatingTotal() + i);
+        this.setRating(this.getRatingTotal() / this.getRatingCount());
+         /**try{
+         factory2 = new Configuration().configure().buildSessionFactory();
+      }catch (Throwable ex) { 
+         System.err.println("Failed to create sessionFactory object." + ex);
+         throw new ExceptionInInitializerError(ex); 
+      }
+         System.out.println(this.movieId);
+         Session session = factory2.openSession();
+         Query query = session.createQuery("from Movie where id = '" + this.Id + "'");
+         List<Movie> movs = query.list();
+         System.out.println(movs.size());
+         Transaction tx = null;
+         Movie mov = movs.get(0);
+         mov.setRatingCount(mov.getRatingCount() + 1);
+         mov.setRatingTotal(mov.getRatingTotal() + i);
+         mov.setRating(mov.getRatingTotal() / mov.getRatingCount());
+         session.save(mov);
+         tx.commit();**/
     }
 
+    /**
+     * Get total from all ratings
+     * @return 
+     */
+    public int getRatingTotal() {
+        return this.ratingTotal;
+    }
+    
+    public String getMajor() {
+        
+        return this.major;
+    }
+    
+    public void setMajor(String s) {
+        this.major = s;
+    }
+    
+    /**
+     * Set total of ratings
+     * @param num 
+     */
+    public void setRatingTotal(int num) {
+        this.ratingTotal = num;
+    }
+    
+    /**
+     * Get number of times movie has been rated
+     * @return 
+     */
+    public int getRatingCount() {
+        return this.ratingCount;
+    }
+    
+    public void setTitle(String s) {
+        this.title = s;
+    }
+    
+    /**
+     * Set the number of times this movie has been rated
+     * @param num 
+     */
+    public void setRatingCount(int num) {
+        this.ratingCount = num;
+    }
+    
+    
+    /**
+     * Get database Id for the movie
+     * @return 
+     */
+    public int getMovieId() {
+        return this.movieId;
+    }
+    
+    /**
+     * Set the database id for the movie (not used)
+     * @param Id 
+     */
+    public void setMovieId(int Id) {
+        this.movieId = Id;
+    }
+    
     /**
      * Gets the rotten tomatoes ID of this movie
      * @return id
      */
-    public int getID() {
-        return (int) json.get("id");
+    public String getId() {
+        return this.Id;
     }
 
+    public void setId(String id) {
+        this.Id = id;
+    }
+    
     /**
      * Gets the title of this movie
      * @return title
      */
     public String getTitle() {
-        return (String) json.get("title");
+        return this.title;
     }
 
     /**
@@ -170,4 +278,13 @@ public class Movie {
     public String getOriginal() {
         return (String) json.get("original");
     }
+    
+    public int getRating() {
+        return this.rating;
+    }
+    
+    public void setRating(int rating) {
+        this.rating=rating;
+    }
+    
 }

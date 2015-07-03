@@ -4,17 +4,46 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+    
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
     <h:head>
-        <title>New Movies</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
+        <title>New Movies</title>
 
     </h:head>
-    <h:body><center><h:form>
-            <p:panel id="panel" header="Welcome to Movie Recommender" style="width: 850px; height: 850px">
-                <p> Here is a list of new movie releases!</p>
-
-                <ul>
+    <h:body><center>
+        <h:form>  
+            <p:panelGrid style="margin-top:20px">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="2">View Profile</p:column>
+                    </p:row>
+                </f:facet>
+                    
+               
+            <p:row>
+                <p:column colspan="2"  >
+                    <center>
+                    <img src="buzz.png" height="150" width='650'/> 
+                    </center>
+                </p:column>
+            </p:row>
+                
+            <p:row>
+                <p:column colspan="1"  ><center>
+                    <p:panel id="panel2"  style="overflow: auto;width: 200px; height: 450px; margin-top:0px;border-width:0">
+                       Here is your profile information!
+                       Profile seem a little bland? Add a picture, or update your boring ol' name with something with some flare!
+                     
+                    </p:panel>
+                    </center>
+                </p:column>
+                <p:column colspan="1" style="overflow: auto" >
+                    <center>
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 450px; margin-top:0px;border-width:0">
+                
+               <ul>
                     <ui:repeat value="#{search.movies}" var="movie">
                         <li>
                             <h:link value="#{movie.title}" outcome="movie">
@@ -23,11 +52,15 @@
                         </li>
                     </ui:repeat>
                 </ul>
-
-                <p:commandButton value="back" action="MovieSearch" update="panel"/>
+                <p:commandButton value="back" action="MovieSearch" update="panel2"/>
 
 
             </p:panel>
-            </h:form>
+                         </center>
+                   </p:column>
+            </p:row>
+            </p:panelGrid>
+           
+        </h:form>
         </center></h:body>
 </html>

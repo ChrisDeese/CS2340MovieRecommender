@@ -12,8 +12,43 @@
     </h:head>
     <h:body><center>
         <h:form>
+             
+            <p:panelGrid style="margin-top:20px">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="2">Registration</p:column>
+                    </p:row>
+                </f:facet>
+                    
+               
+            <p:row>
+                <p:column colspan="2"  >
+                    <center>
+                    <img src="buzz.png" height="150" width='650'/> 
+                    </center>
+                </p:column>
+            </p:row>
+                
+            <p:row>
+                <p:column colspan="1"  ><center>
+                    <p:panel id="panel2"  style="overflow: auto;width: 200px; height: 450px; margin-top:0px;border-width:0">
+                       Register to get access to all the amazing features.
+                        <img src="noPic.png" height="100" width='100' /> 
+                        
+                        
+                        
+                     
+                                <p>Try to pick a username and password combination you will remember and isn't that easy to guess!
+                                    (hint) Don't use "user" and "pass"</p>
+                     
+                    </p:panel>
+                    </center>
+                </p:column>
+                <p:column colspan="1" style="overflow: auto" >
+                    <center>
  
-            <p:panel id="panel" header="Registration for Movie Recommender" style="width: 850px; height: 850px">
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 450px; margin-top:0px;border-width:0">
+               
                 <p:messages id="msgs" />
                 <p><b> Enter your name, a unique username, and password</b></p>
                 <h:panelGrid columns="3" cellpadding="5">
@@ -46,7 +81,15 @@
                 <p:commandButton update="panel" value="Cancel Registration" action="#{user.cancel()}" />
                 
                 
-            </p:panel>  
+            </p:panel> 
+                        </center>
+                   </p:column>
+            </p:row>
+            </p:panelGrid>
+           
+            
+            
+                    
         </h:form>
         </center></h:body>
 </html>

@@ -1,57 +1,69 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <title>Login Page</title>
 
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Movie Buzz</title>
-      
-            </f:facet>
-        </h:head>
-
-        <h:body>
-            <h:form>
-            <p:panel id="panel" header="Welcome to Movie Recommender">
-            </p:panel>
-            <p:layout fullPage="true">
-
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Hi #{user.username}!  
-                </p:layoutUnit>
-
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    Team Infinite Loop
-                </p:layoutUnit>
-                <p:growl id="growl" showDetail="true" autoUpdate="true"/>
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
-                    <p:menu>
+    </h:head>
+    <h:body><center>
+        <h:form>
+             
+            <p:panelGrid style="margin-top:20px">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="2">Main Page</p:column>
+                    </p:row>
+                </f:facet>
+                    
+               
+            <p:row>
+                <p:column colspan="2"  >
+                    <center>
+                    <img src="buzz.png" height="150" width='650'/> 
+                    </center>
+                </p:column>
+            </p:row>
+                
+            <p:row>
+                <p:column colspan="1"  ><center>
+                    <p:menu id="panel2"  style="overflow: auto;width: 200px; height: 450px; margin-top:0px;border-width:0">
                         <p:submenu label="Options">
-                            <p:menuitem value="Edit Profile" action ="editProfile" />
+                       
+                           
                             <p:menuitem value="View Profile" action ="ViewProfile" />
                             <p:menuitem value="Search for movies" action ="MovieSearch" />
                             <p:menuitem value="Get Recommendations" action ="Recommended" />
+                            
                             <p:menuitem action="#{user.logout()}" value ="Logout"/>
-
                         </p:submenu>
 
+                       
                     </p:menu>
-                </p:layoutUnit>
-
-                <p:layoutUnit position="center">
-                    Welcome to Movie Buzz
+                    </center>
+                </p:column>
+                <p:column colspan="1" style="overflow: auto" >
+                    <center>
+ 
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 450px; margin-top:0px;border-width:0">
+               
+                <p:messages id="msgs" />
+                 Hi #{user.username}!
+                cool stuff later
+            </p:panel>
+                    </center>
+                        
+                   </p:column>
+            </p:row>
+            </p:panelGrid>
+           
+            
+            
                     
-                </p:layoutUnit>
-
-            </p:layout>
-            </h:form>
-
-        </h:body>
-
-    </f:view>
+        </h:form>
+        </center></h:body>
 </html>
-

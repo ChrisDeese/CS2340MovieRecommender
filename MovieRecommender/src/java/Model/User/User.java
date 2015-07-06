@@ -6,6 +6,8 @@
 package Model.User;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -13,6 +15,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -35,7 +38,7 @@ public class User implements Serializable{
 
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
-    
+
     private static SessionFactory factory1;
 
     /**
@@ -49,25 +52,17 @@ public class User implements Serializable{
         input = "";
          try{
          factory1 = new Configuration().configure().buildSessionFactory();
-      }catch (Throwable ex) { 
+      }catch (Throwable ex) {
          System.err.println("Failed to create sessionFactory object." + ex);
-         throw new ExceptionInInitializerError(ex); 
+         throw new ExceptionInInitializerError(ex);
       }
     }
-    
-    /**
-     * returns the major of the user
-     * @return 
-     */
+
     public String getMajor() {
         UserData u = userManager.getMap().get(this.username);
         return u.getMajor();
     }
-    
-    /**
-     * sets the major of the user
-     * @param major 
-     */
+
     public void setMajor(String major) {
         this.major = major;
     }
@@ -126,6 +121,15 @@ public class User implements Serializable{
      */
     public String login() {
         UserData data = userManager.find(username);
+
+        boolean banCheck = isBanned(username);
+
+        if (banCheck == true) {
+          FacesContext context = FacesContext.getCurrentInstance();
+          context.addMessage(null, new FacesMessage("You are banned from using"
+              + " MovieBuzz! Please contact the admin."));
+          return null;
+        }
 
         if (this.username.length() == 0 && this.getPassword().length()== 0) {
             username="";
@@ -250,7 +254,7 @@ public class User implements Serializable{
                     + " Please fill out the required fields."));
             return null;
         }
-        
+
         UserData data = userManager.find(username);
         Session session = factory1.openSession();
         Transaction tx = null;
@@ -293,4 +297,81 @@ public class User implements Serializable{
         userManager = um;
     }
 
+    public List<UserData> getList() {
+        Session session1 = factory1.openSession();
+        List<UserData> answer = (List) new ArrayList<UserData>();
+        Transaction tx1 = null;
+        try {
+            tx1 = session1.beginTransaction();
+            String hql = "SELECT name, username, banned FROM UserData WHERE admin = False";
+            Query query = session1.createQuery(hql);
+            answer = query.list();
+            tx1.commit();
+        } catch (Exception e) {
+            if (tx1 != null) tx1.rollback();
+            e.printStackTrace();
+        } finally {
+            session1.close();
+        }
+        return answer;
+    }
+
+    public void ban(UserData u) {
+      Session session2 = factory1.openSession();
+      Transaction tx2 = null;
+      try {
+          tx2 = session2.beginTransaction();
+          String username = u.getUsername();
+          String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+          Query query = session2.createQuery(hql);
+          query.setParameter("banned", "True");
+          int answer = query.executeUpdate();
+          tx2.commit();
+      } catch (Exception e) {
+          if (tx2 != null) tx2.rollback();
+          e.printStackTrace();
+      } finally {
+          session2.close();
+      }
+    }
+
+    public void UnBan(UserData u) {
+      Session session2 = factory1.openSession();
+      Transaction tx2 = null;
+      try {
+          tx2 = session2.beginTransaction();
+          String username = u.getUsername();
+          String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+          Query query = session2.createQuery(hql);
+          query.setParameter("banned", "True");
+          int answer = query.executeUpdate();
+          tx2.commit();
+      } catch (Exception e) {
+          if (tx2 != null) tx2.rollback();
+          e.printStackTrace();
+      } finally {
+          session2.close();
+      }
+    }
+
+    public boolean isBanned(String username) {
+        Session session1 = factory1.openSession();
+        List<Boolean> answer = (List) new ArrayList<Boolean>();
+        Transaction tx1 = null;
+        try {
+            tx1 = session1.beginTransaction();
+            String hql = "SELECT banned From UserData Where username = '" + username + "'";
+              Query query = session1.createQuery(hql);
+              answer = query.list();
+              tx1.commit();
+        } catch (Exception e) {
+            if (tx1 != null) tx1.rollback();
+            e.printStackTrace();
+        } finally {
+            session1.close();
+        }
+
+        boolean ans = answer.get(0);
+        return ans;
+    }
 }

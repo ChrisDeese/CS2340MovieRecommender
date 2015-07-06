@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="Model.User.UserData" table="Actors">
+    <meta attribute="class-description">
+        this contains User information.
+    </meta>
+    <id name="userId" type="int" column="userId">
+        <generator class="assigned"/>
+    </id>
+    <property name="username" column="username" type ="string"/>
+    <property name="password" column="password" type="string"/>
+    <property name="name" column="name" type="string"/>
+    <property name="major" column="major" type="string"/>
+    <property name="admin" column="admin" type="boolean"/>
+    <property name="banned" column="banned" type="boolean"/>
+</class>
+</hibernate-mapping>

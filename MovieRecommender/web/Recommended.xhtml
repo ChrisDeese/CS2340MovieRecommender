@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <link href="style.css" rel="stylesheet" type="text/css" />
-        <title>Edit Profile</title>
+        <title>Recommended Movies</title>
 
     </h:head>
     <h:body><center>
@@ -14,7 +15,7 @@
             <p:panelGrid style="margin-top:20px">
                 <f:facet name="header">
                     <p:row>
-                        <p:column colspan="2">View Profile</p:column>
+                        <p:column colspan="2">Recommended Movies</p:column>
                     </p:row>
                 </f:facet>
                     
@@ -30,8 +31,7 @@
             <p:row>
                 <p:column colspan="1"  ><center>
                     <p:panel id="panel2"  style="overflow: auto;width: 200px; height: 450px; margin-top:0px;border-width:0">
-                       Here is your profile information!
-                       Profile seem a little bland? Add a picture, or update your boring ol' name with something with some flare!
+                       Recommended movies based on past ratings.
                      
                     </p:panel>
                     </center>
@@ -40,31 +40,24 @@
                     <center>
             <p:panel id="panel"  style="overflow: auto;width: 500px; height: 450px; margin-top:0px;border-width:0">
                 
-               <p><b> Here you can edit your profile information.</b></p>
-                <p:messages id="msgs" />
-                <h:panelGrid columns="3" cellpadding="5">
-                    <p:outputLabel for="name" value="Edit name" />
+               <p:messages id="msgs" />
+                <ul>
+                    <ui:repeat value="#{movieAggregator.makeRecommendations()}" var="movie">
+                        <li>
+                            
+                            <h:link value="#{movie.title}" outcome="movie">
+                                
+                                <f:param name="id" value="#{movie.id}"></f:param>
+                                <h:commandLink action="RateMovie" value="more info on #{movie.title}"/>
+                            </h:link>
+                        </li>
+                    </ui:repeat>
+                </ul>
+                
 
-                    <p:inputText id="name"  value="#{user.name}"
-                                 required="false" label="First name">
+                <p:commandButton value="back" action="index" update="panel"/>
 
-                        <f:validateLength minimum="0"/>
-                    </p:inputText>
-                    <p:message for="name" display="Text" />
 
-                    <p:outputLabel for="password" value="Edit Password" />
-                    <p:password id="password"  value="#{user.password}"
-                                label="Password" required="false"
-                                feedback="true">
-                        <f:validateLength minimum="0" />
-                    </p:password>
-
-                    <p:message for="password" display="Text" />
-                </h:panelGrid>
-
-                <p:commandButton update="panel" value="Submit"
-                             icon="ui-icon-check" action = "#{user.editProf()}" />
-                <p:commandButton update="panel" value="Delete Changes" action="index" />
 
 
             </p:panel>

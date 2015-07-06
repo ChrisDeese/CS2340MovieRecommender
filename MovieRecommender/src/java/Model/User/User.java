@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,6 +13,11 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 /**
  *
@@ -23,10 +29,15 @@ public class User implements Serializable{
     private String username;
     private String password;
     private String name;
+    private String major;
     private boolean admin;
+
+    private String input;
 
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
+    
+    private static SessionFactory factory1;
 
     /**
      * Creates a new instance of User
@@ -35,6 +46,31 @@ public class User implements Serializable{
         username = "";
         password = "";
         name = "";
+        major="";
+        input = "";
+         try{
+         factory1 = new Configuration().configure().buildSessionFactory();
+      }catch (Throwable ex) { 
+         System.err.println("Failed to create sessionFactory object." + ex);
+         throw new ExceptionInInitializerError(ex); 
+      }
+    }
+    
+    /**
+     * returns the major of the user
+     * @return 
+     */
+    public String getMajor() {
+        UserData u = userManager.getMap().get(this.username);
+        return u.getMajor();
+    }
+    
+    /**
+     * sets the major of the user
+     * @param major 
+     */
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     /**
@@ -215,11 +251,28 @@ public class User implements Serializable{
                     + " Please fill out the required fields."));
             return null;
         }
-
+        
         UserData data = userManager.find(username);
-        data.setName(name);
-        data.setPassword(password);
-        data.setAdmin(admin);
+        Session session = factory1.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            System.out.println(data.getUserId());
+            UserData sqldata = (UserData) session.load(UserData.class, data.getUserId());
+            data.setName(name);
+            sqldata.setName(name);
+            data.setPassword(password);
+            sqldata.setPassword(password);
+            data.setAdmin(admin);
+            sqldata.setAdmin(admin);
+            session.save(sqldata);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
         System.out.println("Profile Edited");
         return "ViewProfile";
     }

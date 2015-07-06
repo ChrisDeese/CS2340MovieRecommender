@@ -2,53 +2,77 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"         
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
     <h:head>
         <link href="style.css" rel="stylesheet" type="text/css" />
-        <title>Login Page</title>
-        
+        <title>Movie Search</title>
+
     </h:head>
     <h:body><center>
-        <h:form>
- 
-            <p:panel id="panel" header="Search for Movies!" style="width: 850px; height: 850px">
+        <h:form>  
+            <p:panelGrid style="margin-top:20px">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="2">View Profile</p:column>
+                    </p:row>
+                </f:facet>
+                    
                
-                <p:messages id="msgs" />
+            <p:row>
+                <p:column colspan="2"  >
+                    <center>
+                    <img src="buzz.png" height="150" width='650'/> 
+                    </center>
+                </p:column>
+            </p:row>
+                
+            <p:row>
+                <p:column colspan="1"  ><center>
+                    <p:panel id="panel2"  style="overflow: auto;width: 200px; height: 450px; margin-top:0px;border-width:0">
+                       Search for movies. You also have the option to search for new DVD's and movie releases.
+                     
+                    </p:panel>
+                    </center>
+                </p:column>
+                <p:column colspan="1" style="overflow: auto" >
+                    <center>
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 450px; margin-top:0px;border-width:0">
+                
+               <p:messages id="msgs" />
                 <p>Search for movies by typing in movie title</p>
                 <h:panelGrid columns="3" cellpadding="5">
-                    
                     <p:outputLabel for="search" value="Search" />
-   
-                    <p:inputText id="search" 
+                    <p:inputText id="search" value="#{search.input}"
                                  required="false" label="Search Movie Titles">
-                        
+
                         <f:validateLength minimum="0"/>
                     </p:inputText>
-                   
+
                     <p:message for="search" display="Text" />
                     </h:panelGrid>
                 <h:panelGrid columns="2" cellpadding="5">
-                <p:commandButton update="panel" value="Submit" 
-                             icon="ui-icon-check" action = "SearchResults"/>
-                <p:commandButton update="panel" value="Back" 
+                <p:commandButton update="panel" value="Submit"
+                             icon="ui-icon-check" action="#{search.find(search.input)}"/>
+                <p:commandButton update="panel" value="Back"
                              action = "index"/>
                 </h:panelGrid>
-               
+
                     <p>Or find new movies releases and DVD's</p>
-         
-                     
-                <p:commandButton update="panel" value="Find new movie releases" action ="newMovies"  />
-                <p:commandButton update="panel" value="Find new DVD's"  action ="newDVDs" />
-               
-                
-                
-                
-                
-                
-            </p:panel>  
+
+
+                <p:commandButton update="panel" value="Find new movie releases" action="#{search.newTheater()}"/>
+                <p:commandButton update="panel" value="Find new DVD's"  action="#{search.newDVD()}"/>
+
+
+
+
+            </p:panel>
+                         </center>
+                   </p:column>
+            </p:row>
+            </p:panelGrid>
+           
         </h:form>
         </center></h:body>
 </html>
-

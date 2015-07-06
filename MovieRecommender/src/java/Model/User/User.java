@@ -122,7 +122,7 @@ public class User implements Serializable{
     public String login() {
         UserData data = userManager.find(username);
 
-        boolean banCheck = isBanned(username);
+        boolean banCheck = isBanned(this.username);
 
         if (banCheck == true) {
           FacesContext context = FacesContext.getCurrentInstance();
@@ -374,4 +374,5 @@ public class User implements Serializable{
         boolean ans = answer.get(0);
         return ans;
     }
+
 }

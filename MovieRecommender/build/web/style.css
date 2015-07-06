@@ -1,0 +1,8 @@
+body  {
+    background: url(HoneyComb.jpg) no-repeat center center fixed;
+    background-size: 100% 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: 100% 100%;
+    -o-background-size: cover;
+    
+}

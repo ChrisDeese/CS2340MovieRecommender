@@ -33,7 +33,7 @@
                     <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
                          <h:panelGrid columns="1" cellpadding="5">
                         <p>Rate the movie!</p>
-                        <p:rating value="2" onRate=""/>
+                        <p:rating value="#{movie.getRating()}" onRate="#{movie.rateMovie(value)}"/>
                         
                          <p:commandButton value="back" action="#{movieAggregator.goBack()}" update="panel"/>
                          </h:panelGrid>

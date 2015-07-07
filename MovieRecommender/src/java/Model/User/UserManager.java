@@ -96,6 +96,7 @@ public class UserManager {
         Session session = factory.openSession();
         Query query = session.createQuery("from UserData");
         List<UserData> userList = query.list();
+        System.out.print(userList);
         for (UserData u : userList) {
             System.out.println(u.getUsername());
             System.out.println(u.getMajor());

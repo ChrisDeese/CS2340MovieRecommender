@@ -9,56 +9,95 @@
         <title>Welcome</title>
 
     </h:head>
-    <h:body><center>
-         
+    <h:body>
             
-            <p:panel id="panel" style="width: 850px; height: 850px">
-                <f:facet name="header" >
-                    <img src="WelcomeText.png" height="150"/>
-                </f:facet>
-   
-                
-                <p> What would you like to do?</p>
-               
-                <p:commandButton value="Login" action="#{user.login()}">
-        <p:confirm  header="Login" message="Insert username and password below to login."
-                   icon="ui-icon-alert" />
-    </p:commandButton>
- 
-    <p:confirmDialog id = "confirm" global="true" showEffect="fade" hideEffect="fade"><h:form>
-        <p:panel id="panel1" >
-                <p:growl id="msgs" />
-        <h:panelGrid columns="3" cellpadding="5">
-                    <p:outputLabel for="username" value="User Name:" />
-                    <p:inputText id="username" value="#{user.username}" 
-                                 required="false" label="username">
-                        <f:validateLength minimum="0"/>
-                    </p:inputText>
-                        
-                    <p:message for="username" display="icon" />
-                    
-                    <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{user.password}" 
-                                label="Password" required="false" 
-                                feedback="false">
-                        <f:validateLength minimum="0" />
-                    </p:password>
-                    
-                    
-                    <p:message for="password" display="Text" />
-                </h:panelGrid>
-               
-                <p:commandButton update="panel1" value="Submit" 
-                             icon="ui-icon-check" action ="#{user.login()}" />
-                <p:commandButton update="panel1" value="Cancel Login" action="#{user.cancel()}" />
-    </p:panel>
-        </h:form>
-    </p:confirmDialog>
-                <p:commandButton update="panel" value="Register" action = "Register" />
-               
-              
 
+
+            <center>
+            <p:panelGrid style="margin-top:20px" id="stuff">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="2">Welcome</p:column>
+                    </p:row>
+                </f:facet>
+                    
+               
+            <p:row>
+                <p:column colspan="2"  >
+                    <center>
+                    <img src="buzz.png" height="150" width='650'/> 
+                    </center>
+                </p:column>
+            </p:row>
+                
+            <p:row>
+                <p:column colspan="1"  ><center>
+                    <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
+                        Welcome to MovieBuzz!
+                        <img src="noPic.png" height="100" width='100' /> 
+                        <p>Login to view profile, rate movies, and see the newest movie releases!</p>
+                        
+                        <p><b>OR</b></p>
+                        
+                                <p>register to get access to all these great features.</p>
+                     
+                    </p:panel>
+                    </center>
+                </p:column>
+                <p:column colspan="1" style="overflow: auto" >
+                    <center>
+                    <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
+                        
+      
+                        <p> What would you like to do?</p>
+               
+                    <p:commandButton value="Login" action="#{user.login()}">
+                     <p:confirm  header="Login" message="Insert username and password below to login."
+                    icon="ui-icon-alert" />
+                    </p:commandButton>
+ 
+            <p:confirmDialog id = "confirm" global="true" showEffect="fade" hideEffect="fade"><h:form>
+                <p:panel id="panel1" >
+                        <p:growl id="msgs" />
+                <h:panelGrid columns="3" cellpadding="5">
+                            <p:outputLabel for="username" value="User Name:" />
+                            <p:inputText id="username" value="#{user.username}" 
+                                         required="false" label="username">
+                                <f:validateLength minimum="0"/>
+                            </p:inputText>
+
+                            <p:message for="username" display="icon" />
+
+                            <p:outputLabel for="password" value="Password:" />
+                            <p:password id="password" value="#{user.password}" 
+                                        label="Password" required="false" 
+                                        feedback="false">
+                                <f:validateLength minimum="0" />
+                            </p:password>
+
+
+                            <p:message for="password" display="Text" />
+                        </h:panelGrid>
+
+                        <p:commandButton update="msgs" value="Submit" 
+                                     icon="ui-icon-check" action ="#{user.login()}" />
+                        <p:commandButton update="panel1" value="Cancel Login" action="#{user.cancel()}" />
             </p:panel>
+                </h:form>
+            </p:confirmDialog>
+                        <p:commandButton update="panel" value="Register" action = "Register" />
+
+
+
+                    </p:panel>
+                    
+                
+                    </center>  
+            </p:column>
+            </p:row>
+            </p:panelGrid>
+           
+            
             </center>
             </h:body>
     </html>

@@ -12,32 +12,77 @@
     </h:head>
     <h:body><center>
         <h:form>
+             
+            <p:panelGrid style="margin-top:20px">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="2">Registration</p:column>
+                    </p:row>
+                </f:facet>
+                    
+               
+            <p:row>
+                <p:column colspan="2"  >
+                    <center>
+                    <img src="buzz.png" height="150" width='650'/> 
+                    </center>
+                </p:column>
+            </p:row>
+                
+            <p:row>
+                <p:column colspan="1"  ><center>
+                    <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
+                       Register to get access to all the amazing features.
+                        <img src="noPic.png" height="100" width='100' /> 
+                        
+                        
+                        
+                     
+                                <p>Try to pick a username and password combination you will remember and isn't that easy to guess!
+                                    (hint) Don't use "user" and "pass"</p>
+                     
+                    </p:panel>
+                    </center>
+                </p:column>
+                <p:column colspan="1" style="overflow: auto" >
+                    <center>
  
-            <p:panel id="panel" header="Registration for Movie Recommender" style="width: 850px; height: 850px">
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
+               
                 <p:messages id="msgs" />
-                <p><b> Enter your name, a unique username, and password</b></p>
-                <h:panelGrid columns="3" cellpadding="5">
-                    <p:outputLabel for="name" value="Name:" />
-                    <p:inputText id="name" value="#{user.name}" 
-                                 required="false" label="First name">
-                        <f:validateLength minimum="0"/>
+                <p><b> Enter your name, major, a unique username, and password</b></p>
+                <h:panelGrid columns="2" cellpadding="5" bodyrows="4" >
+                    
+                   
+                    Name:
+                    <p:inputText id="name" value="#{user.name}"  >
+                        
                     </p:inputText>
-                    <p:message for="name" display="Text" />
-                    <p:outputLabel for="username" value="User Name:" />
+                    Major:
+                    <p:inputText id="major" value="#{user.major}" >
+                       
+                    </p:inputText>
+                    
+                   
+                    
+                   
+                    Username:
                     <p:inputText id="username"  value="#{user.username}"
-                                 required="false" label="Username">
-                        <f:validateLength minimum="0"/>
+                                 required="false">
+                        
                     </p:inputText>
 
-                    <p:message for="username" display="icon" />
-
-                    <p:outputLabel for="password" value="Password:" />
+                    
+                    
+                    Password:
                     <p:password id="password" value="#{user.password}"
-                                label="Password" required="false" 
+                                 required="false" 
                                 feedback="true">
                         <f:validateLength minimum="0" />
                     </p:password>
-
+                    
+                    
+<p:message for="username" display="icon" />
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
                
@@ -46,7 +91,15 @@
                 <p:commandButton update="panel" value="Cancel Registration" action="#{user.cancel()}" />
                 
                 
-            </p:panel>  
+            </p:panel> 
+                        </center>
+                   </p:column>
+            </p:row>
+            </p:panelGrid>
+           
+            
+            
+                    
         </h:form>
         </center></h:body>
 </html>

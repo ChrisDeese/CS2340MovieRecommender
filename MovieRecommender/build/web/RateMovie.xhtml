@@ -6,19 +6,66 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>New Movies</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
+        <title>Movie Info</title>
 
     </h:head>
-    <h:body><center><h:form>
-            <p:panel id="panel" header="Welcome to Movie Recommender" style="width: 850px; height: 850px">
-                <p>#{movie.title} </p>
-                <p:rating value="#{movie.getRating()}" onRate="#{movie.rateMovie(value)}"/>
+    <h:body><center>
+        <h:form>  
+            <p:panelGrid style="margin-top:20px">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="2">Rate Movies</p:column>
+                    </p:row>
+                </f:facet>
+                    
+               
+            <p:row>
+                <p:column colspan="2"  >
+                    <center>
+                    <img src="buzz.png" height="150" width='650'/> 
+                    </center>
+                </p:column>
+            </p:row>
+                
+            <p:row>
+                <p:column colspan="1"  ><center>
+                    <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
+                         <h:panelGrid columns="1" cellpadding="5">
+                        <p>Rate the movie!</p>
+                        <p:rating value="#{movie.getRating()}" onRate="#{movie.rateMovie(value)}"/>
+                        
+                         <p:commandButton value="back" action="#{movieAggregator.goBack()}" update="panel"/>
+                         </h:panelGrid>
+                    </p:panel>
+                    </center>
+                </p:column>
+                <p:column colspan="1" style="overflow: auto" >
+                    <center>
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
+                
+               <h:panelGrid columns="2" cellpadding="10">
+                <f:facet name="header">
+        <p:row>
+            <p:column colspan="2"><b>#{movie.title}</b></p:column>
+        </p:row>
+        
+ 
+    </f:facet>
+               
+                <h:outputText
+                    value="#{movie.getSynopsis()}" />
+            </h:panelGrid>
+                
 
-                <p:commandButton value="back" action="#{movieAggregator.goBack()}" update="panel"/>
-
-
+               
+           
             </p:panel>
-
-            </h:form></center></h:body>
+                         </center>
+                   </p:column>
+            </p:row>
+            </p:panelGrid>
+           
+        </h:form>
+        </center></h:body>
 </html>

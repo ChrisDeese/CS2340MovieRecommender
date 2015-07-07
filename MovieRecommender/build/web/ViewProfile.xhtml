@@ -10,19 +10,48 @@
 
     </h:head>
     <h:body><center>
-        <h:form>       
-            <p:panel id="panel" header="Welcome to Movie Recommender" style="width: 850px; height: 850px">
+        <h:form>  
+            <p:panelGrid style="margin-top:20px">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="2">View Profile</p:column>
+                    </p:row>
+                </f:facet>
+                    
+               
+            <p:row>
+                <p:column colspan="2"  >
+                    <center>
+                    <img src="buzz.png" height="150" width='650'/> 
+                    </center>
+                </p:column>
+            </p:row>
+                
+            <p:row>
+                <p:column colspan="1"  ><center>
+                    <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
+                       Here is your profile information!
+                       Profile seem a little bland? Update your boring ol' name with something snazzy! 
+                     
+                    </p:panel>
+                    </center>
+                </p:column>
+                <p:column colspan="1" style="overflow: auto" >
+                    <center>
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
+                
                 <p> Hi #{user.username}! the following is your profile information.</p>
                 
-                <h3>Basic</h3>
+              
 <p:panelGrid columns="2">
     <f:facet name="header">
-        <img src="blankFace.jpeg" />
+        <img src="profilePic.jpg" />
     </f:facet>
  
     <h:outputText value="Name:" />
     <h:outputText value="#{user.name}" />
     
+
     <h:outputText value="Major:"/>
     <h:outputText value="#{user.getMajor()}"/>
  
@@ -39,6 +68,11 @@
 
 
             </p:panel>
+                         </center>
+                   </p:column>
+            </p:row>
+            </p:panelGrid>
+           
         </h:form>
         </center></h:body>
 </html>

@@ -105,7 +105,7 @@ public class MovieAggregator {
      */
     public String goBack() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "welcomePage.xhtml?faces-redirect=true";
+        return "MovieSearch.xhtml?faces-redirect=true";
     }
     
 }

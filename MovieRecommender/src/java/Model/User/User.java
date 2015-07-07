@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,7 +29,7 @@ public class User implements Serializable{
     private String password;
     private String name;
     private String major;
-    private boolean admin;
+    private boolean admin=true;
 
     private String input;
 
@@ -292,6 +291,9 @@ public class User implements Serializable{
      */
     public void setUserManager(UserManager um) {
         userManager = um;
+    }
+    public boolean checkAdmin(){
+        return !admin;
     }
 
 }

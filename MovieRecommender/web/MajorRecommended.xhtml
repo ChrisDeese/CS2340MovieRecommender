@@ -30,15 +30,19 @@
                 
             <p:row>
                 <p:column colspan="1"  ><center>
-                    <p:panel id="panel2"  style="overflow: auto;width: 200px; height: 450px; margin-top:0px;border-width:0">
+                    <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
                        Recommended movies based on your major.
+                       <h:panelGrid columns="1">
+                           
+                        <p:commandButton value="back" action="Index" update="panel2"/>
+                        </h:panelGrid>
                      
                     </p:panel>
                     </center>
                 </p:column>
                 <p:column colspan="1" style="overflow: auto" >
                     <center>
-            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 450px; margin-top:0px;border-width:0">
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
                 
                <p:messages id="msgs" />
                 <ul>
@@ -55,8 +59,7 @@
                 </ul>
                 
 
-                <p:commandButton value="back" action="index" update="panel"/>
-
+                
 
             </p:panel>
                          </center>

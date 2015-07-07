@@ -14,7 +14,7 @@
             <p:panelGrid style="margin-top:20px">
                 <f:facet name="header">
                     <p:row>
-                        <p:column colspan="2">View Profile</p:column>
+                        <p:column colspan="2">Movie Search</p:column>
                     </p:row>
                 </f:facet>
                     
@@ -31,7 +31,10 @@
                 <p:column colspan="1"  ><center>
                     <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
                        Search for movies. You also have the option to search for new DVD's and movie releases.
-                       
+                       <h:panelGrid columns="1">
+                            
+                        <p:commandButton value="back" action="index" update="panel2"/>
+                        </h:panelGrid>
                        
                        
                      
@@ -55,11 +58,9 @@
                     <p:message for="search" display="Text" />
                     
                     </h:panelGrid>
-                <h:panelGrid columns="2" cellpadding="5">
+                <h:panelGrid columns="1" cellpadding="5">
                 <p:commandButton update="panel" value="Submit"
                              icon="ui-icon-check" action="#{search.find(search.input)}"/>
-                <p:commandButton update="panel" value="Back"
-                                     action = "index"/>
                 
                 </h:panelGrid>
 

@@ -17,7 +17,7 @@
             <p:panelGrid style="margin-top:20px">
                 <f:facet name="header">
                     <p:row>
-                        <p:column colspan="2">View Profile</p:column>
+                        <p:column colspan="2">New Movies</p:column>
                     </p:row>
                 </f:facet>
                     
@@ -33,8 +33,11 @@
             <p:row>
                 <p:column colspan="1"  ><center>
                     <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
-                       Here is a list of all the new movie releases!
-                       <p:commandButton value="back" action="MovieSearch" update="panel2"/>
+                        Here is a list of all the new movie releases!
+                        <h:panelGrid columns="1">
+                           
+                        <p:commandButton value="back" action="MovieSearch" update="panel2"/>
+                        </h:panelGrid>
                     </p:panel>
                     </center>
                 </p:column>

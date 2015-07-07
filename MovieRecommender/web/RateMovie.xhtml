@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <link href="style.css" rel="stylesheet" type="text/css" />
-        <title>Rate Movies</title>
+        <title>Movie Info</title>
 
     </h:head>
     <h:body><center>
@@ -31,8 +31,12 @@
             <p:row>
                 <p:column colspan="1"  ><center>
                     <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
-                       Rate movies! 
-                     
+                         <h:panelGrid columns="1" cellpadding="5">
+                        <p>Rate the movie!</p>
+                        <p:rating value="2" onRate=""/>
+                        
+                         <p:commandButton value="back" action="#{movieAggregator.goBack()}" update="panel"/>
+                         </h:panelGrid>
                     </p:panel>
                     </center>
                 </p:column>
@@ -40,11 +44,21 @@
                     <center>
             <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
                 
-               <p:messages id="msgs" />
-                <p>#{movie.title} </p>
-                <p:rating value="#{movie.getRating()}" onRate="#{movie.rateMovie(value)}"/>
+               <h:panelGrid columns="2" cellpadding="10">
+                <f:facet name="header">
+        <p:row>
+            <p:column colspan="2"><b>#{movie.title}</b></p:column>
+        </p:row>
+        
+ 
+    </f:facet>
+               
+                <h:outputText
+                    value="#{movie.getSynopsis()}" />
+            </h:panelGrid>
+                
 
-                <p:commandButton value="back" action="#{movieAggregator.goBack()}" update="panel"/>
+               
            
             </p:panel>
                          </center>

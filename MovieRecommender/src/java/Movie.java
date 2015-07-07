@@ -177,6 +177,7 @@ public class Movie {
      * @return synopsis
      */
     public String getSynopsis() {
+        System.out.print((String) json.get("synopsis"));
         return (String) json.get("synopsis");
     }
 
@@ -200,8 +201,8 @@ public class Movie {
      * Gets the runtime of this movie
      * @return runtime
      */
-    public int getRuntime() {
-        return (int) json.get("runtime");
+    public long getRuntime() {
+        return (long) json.get("runtime");
     }
 
     /**
@@ -249,6 +250,7 @@ public class Movie {
      * @return thumbnail
      */
     public String getThumbnail() {
+        System.out.print((String) json.get("thumbnail"));
         return (String) json.get("thumbnail");
     }
 

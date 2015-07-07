@@ -56,10 +56,10 @@
                
                 <p:messages id="msgs" />
                  Hi #{user.username}! Welcome to Movie Buzz!
-                 <p:galleria value="#{imageView.images}" var="image" panelWidth="450" panelHeight="255" showCaption="true" effect="Fade" >
-                    <p:graphicImage value ="#{image}" alt="Search movies and find the hottest new releases!" title="Search Movies"/>
+                 <p:galleria effectSpeed="300" value="#{imageView.images}" var="image" panelWidth="400" panelHeight="240" showCaption="false" effect="Fade" style="border-width:0">
+                    <p:graphicImage value ="moviePics/#{image}" alt="Search movies and find the hottest new releases!" title="Search Movies"/>
                    
-</p:galleria>
+                </p:galleria>
 
             </p:panel>
                     </center>

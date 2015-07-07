@@ -14,7 +14,7 @@
             <p:panelGrid style="margin-top:20px">
                 <f:facet name="header">
                     <p:row>
-                        <p:column colspan="2">View Profile</p:column>
+                        <p:column colspan="2">Edit Profile</p:column>
                     </p:row>
                 </f:facet>
                     
@@ -29,28 +29,39 @@
                 
             <p:row>
                 <p:column colspan="1"  ><center>
-                    <p:panel id="panel2"  style="overflow: auto;width: 200px; height: 450px; margin-top:0px;border-width:0">
+                    <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
                        Here is your profile information!
-                       Profile seem a little bland? Add a picture, or update your boring ol' name with something with some flare!
+                       Profile seem a little bland? Update your boring ol' name with something with some flare!
                      
                     </p:panel>
                     </center>
                 </p:column>
                 <p:column colspan="1" style="overflow: auto" >
                     <center>
-            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 450px; margin-top:0px;border-width:0">
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
                 
                <p><b> Here you can edit your profile information.</b></p>
                 <p:messages id="msgs" />
-                <h:panelGrid columns="3" cellpadding="5">
+                <h:panelGrid columns="2" cellpadding="5">
                     <p:outputLabel for="name" value="Edit name" />
 
                     <p:inputText id="name"  value="#{user.name}"
                                  required="false" label="First name">
 
                         <f:validateLength minimum="0"/>
+                        
                     </p:inputText>
-                    <p:message for="name" display="Text" />
+                    
+                    
+                    <p:outputLabel for="major" value="Edit major" />
+
+                    <p:inputText id="major"  value="#{user.major}"
+                                 required="false" label="major">
+
+                        <f:validateLength minimum="0"/>
+                        
+                    </p:inputText>
+                    
 
                     <p:outputLabel for="password" value="Edit Password" />
                     <p:password id="password"  value="#{user.password}"
@@ -58,13 +69,13 @@
                                 feedback="true">
                         <f:validateLength minimum="0" />
                     </p:password>
-
+                    <p:message for="name" display="Text" />
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
 
                 <p:commandButton update="panel" value="Submit"
                              icon="ui-icon-check" action = "#{user.editProf()}" />
-                <p:commandButton update="panel" value="Delete Changes" action="index" />
+                <p:commandButton update="panel" value="Back/Delete Changes" action="index" />
 
 
             </p:panel>

@@ -29,15 +29,18 @@
                 
             <p:row>
                 <p:column colspan="1"  ><center>
-                    <p:panel id="panel2"  style="overflow: auto;width: 200px; height: 450px; margin-top:0px;border-width:0">
+                    <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
                        Search for movies. You also have the option to search for new DVD's and movie releases.
+                       
+                       
+                       
                      
                     </p:panel>
                     </center>
                 </p:column>
                 <p:column colspan="1" style="overflow: auto" >
                     <center>
-            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 450px; margin-top:0px;border-width:0">
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
                 
                <p:messages id="msgs" />
                 <p>Search for movies by typing in movie title</p>
@@ -50,12 +53,14 @@
                     </p:inputText>
 
                     <p:message for="search" display="Text" />
+                    
                     </h:panelGrid>
                 <h:panelGrid columns="2" cellpadding="5">
                 <p:commandButton update="panel" value="Submit"
                              icon="ui-icon-check" action="#{search.find(search.input)}"/>
                 <p:commandButton update="panel" value="Back"
-                             action = "index"/>
+                                     action = "index"/>
+                
                 </h:panelGrid>
 
                     <p>Or find new movies releases and DVD's</p>

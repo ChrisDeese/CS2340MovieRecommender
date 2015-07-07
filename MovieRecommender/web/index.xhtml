@@ -31,11 +31,13 @@
                 
             <p:row>
                 <p:column colspan="1"  ><center>
-                    <p:menu id="panel2"  style="overflow: auto;width: 200px; height: 450px; margin-top:0px;border-width:0">
+                    <p:menu id="panel2"  style="overflow: auto;width: 250px; height: 450px; margin-top:0px;border-width:0">
                         <p:submenu label="Options">
                        
                            
                             <p:menuitem value="View Profile" action ="ViewProfile" />
+                            <p:menuitem value="Edit Profile" action ="editProfile" />
+
                             <p:menuitem value="Search for movies" action ="MovieSearch" />
                             <p:menuitem value="Get Recommendations" action ="Recommended" />
                             <p:menuitem value="Major Recommendations" action ="MajorRecommended" />
@@ -44,17 +46,21 @@
 
                        
                     </p:menu>
-                         <p:commandButton update="panel2" value="Admin feature" action="Admin" disabled = "false"/>
+                         <p:commandButton update="panel2" value="Admin features" action="Admin" disabled = "#{user.checkAdmin()}"/>
                     </center>
                 </p:column>
                 <p:column colspan="1" style="overflow: auto" >
                     <center>
  
-            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 450px; margin-top:0px;border-width:0">
+            <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
                
                 <p:messages id="msgs" />
-                 Hi #{user.username}!
-                cool stuff later
+                 Hi #{user.username}! Welcome to Movie Buzz!
+                 <p:galleria value="#{imageView.images}" var="image" panelWidth="450" panelHeight="255" showCaption="true" effect="Fade" >
+                    <p:graphicImage value ="#{image}" alt="Search movies and find the hottest new releases!" title="Search Movies"/>
+                   
+</p:galleria>
+
             </p:panel>
                     </center>
                         

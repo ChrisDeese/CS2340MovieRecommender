@@ -42,15 +42,26 @@
                 
                <p><b> Here you can edit your profile information.</b></p>
                 <p:messages id="msgs" />
-                <h:panelGrid columns="3" cellpadding="5">
+                <h:panelGrid columns="2" cellpadding="5">
                     <p:outputLabel for="name" value="Edit name" />
 
                     <p:inputText id="name"  value="#{user.name}"
                                  required="false" label="First name">
 
                         <f:validateLength minimum="0"/>
+                        
                     </p:inputText>
-                    <p:message for="name" display="Text" />
+                    
+                    
+                    <p:outputLabel for="major" value="Edit major" />
+
+                    <p:inputText id="major"  value="#{user.major}"
+                                 required="false" label="major">
+
+                        <f:validateLength minimum="0"/>
+                        
+                    </p:inputText>
+                    
 
                     <p:outputLabel for="password" value="Edit Password" />
                     <p:password id="password"  value="#{user.password}"
@@ -58,7 +69,7 @@
                                 feedback="true">
                         <f:validateLength minimum="0" />
                     </p:password>
-
+                    <p:message for="name" display="Text" />
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
 

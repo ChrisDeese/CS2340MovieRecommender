@@ -5,10 +5,10 @@
  */
 package Model.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
 import org.hibernate.HibernateException;
@@ -62,6 +62,7 @@ public class UserManager {
 
     /**
      * Adds user to the database
+     * @param user
      */
     public void addUser(UserData user) {
         users.put(user.getUsername(), user);
@@ -83,10 +84,12 @@ public class UserManager {
     /**
      * Prints a list of all the users in the database
      */
-    public void userList() {
+    public List<String> userList() {
+        ArrayList<String> list = new ArrayList<String>();
         for (String name : users.keySet()) {
-            System.out.println(name);
+            list.add(name);
         }
+        return list;
     }
     
     /**
@@ -100,6 +103,7 @@ public class UserManager {
         for (UserData u : userList) {
             System.out.println(u.getUsername());
             System.out.println(u.getMajor());
+            System.out.println(u.getAdmin());
             
             users.put(u.getName(), u);
         }

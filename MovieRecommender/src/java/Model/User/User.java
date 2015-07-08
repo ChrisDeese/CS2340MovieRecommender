@@ -29,7 +29,7 @@ public class User implements Serializable{
     private String password;
     private String name;
     private String major;
-    private boolean admin=true;
+    private boolean admin;
 
     private String input;
 
@@ -293,7 +293,7 @@ public class User implements Serializable{
         userManager = um;
     }
     public boolean checkAdmin(){
-        return !admin;
+        return !userManager.find(this.username).getAdmin();
     }
 
 }

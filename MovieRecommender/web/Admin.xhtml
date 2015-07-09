@@ -11,32 +11,32 @@
 
     </h:head>
     <h:body><center>
-        <h:form>  
+        <h:form>
             <p:panelGrid style="margin-top:20px">
                 <f:facet name="header">
                     <p:row>
                         <p:column colspan="2">Admin Features</p:column>
                     </p:row>
                 </f:facet>
-                    
-               
+
+
             <p:row>
                 <p:column colspan="2"  >
                     <center>
-                    <img src="buzz.png" height="150" width='650'/> 
+                    <img src="buzz.png" height="150" width='650'/>
                     </center>
                 </p:column>
             </p:row>
-                
+
             <p:row>
                 <p:column colspan="1"  ><center>
                     <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
                        Hello Admin!
-                       
+
                        <p>  </p>
-                       
+
                        <p:commandButton update="panel" value="Back" action="index" />
-                     
+
                     </p:panel>
                     </center>
                 </p:column>
@@ -49,22 +49,17 @@
                         <li>
                             <h:link value="#{users}" outcome="movie">
                                 <f:param name="id" value="#{users}"> </f:param>
-                                <p:commandButton update="panel" value="ban" disabled ="false" />
-                                <p:commandButton update="panel" value="unlock"  disabled="false" />
-                     
-                     
                             </h:link>
+                            <p:selectBooleanCheckbox value="#{users.banned}"/>
                         </li>
                     </ui:repeat>
                 </ul>
-                
-
             </p:panel>
                          </center>
                    </p:column>
             </p:row>
             </p:panelGrid>
-           
+
         </h:form>
         </center></h:body>
 </html>

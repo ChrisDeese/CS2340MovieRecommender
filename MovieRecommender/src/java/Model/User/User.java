@@ -29,13 +29,13 @@ public class User implements Serializable{
     private String password;
     private String name;
     private String major;
-    private boolean admin=true;
+    private boolean admin;
 
     private String input;
 
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
-    
+
     private static SessionFactory factory1;
 
     /**
@@ -47,26 +47,27 @@ public class User implements Serializable{
         name = "";
         major="";
         input = "";
+        admin = false;
          try{
          factory1 = new Configuration().configure().buildSessionFactory();
-      }catch (Throwable ex) { 
+      }catch (Throwable ex) {
          System.err.println("Failed to create sessionFactory object." + ex);
-         throw new ExceptionInInitializerError(ex); 
+         throw new ExceptionInInitializerError(ex);
       }
     }
-    
+
     /**
      * returns the major of the user
-     * @return 
+     * @return
      */
     public String getMajor() {
         UserData u = userManager.getMap().get(this.username);
         return u.getMajor();
     }
-    
+
     /**
      * sets the major of the user
-     * @param major 
+     * @param major
      */
     public void setMajor(String major) {
         this.major = major;
@@ -250,7 +251,7 @@ public class User implements Serializable{
                     + " Please fill out the required fields."));
             return null;
         }
-        
+
         UserData data = userManager.find(username);
         Session session = factory1.openSession();
         Transaction tx = null;
@@ -292,8 +293,80 @@ public class User implements Serializable{
     public void setUserManager(UserManager um) {
         userManager = um;
     }
+
+    /**
+     * Checks whether this user has admin privileges
+     * @return admin
+     */
     public boolean checkAdmin(){
-        return !admin;
+        return admin;
+    }
+
+
+    public List<UserData> getList() {
+        Session session1 = factory1.openSession();
+        List<UserData> answer = (List) new ArrayList<UserData>();
+        Transaction tx1 = null;
+        try {
+            tx1 = session1.beginTransaction();
+            String hql = "SELECT name, username, banned FROM UserData WHERE admin = False";
+            Query query = session1.createQuery(hql);
+            answer = query.list();
+            tx1.commit();
+        } catch (Exception e) {
+            if (tx1 != null) tx1.rollback();
+            e.printStackTrace();
+        } finally {
+            session1.close();
+        }
+        return answer;
+    }
+
+    public void changeBan(UserData u) {
+      Session session2 = factory1.openSession();
+      Transaction tx2 = null;
+      try {
+          tx2 = session2.beginTransaction();
+          String username = u.getUsername();
+
+          if (!this.isBanned(name)) {
+              String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+              Query query = session2.createQuery(hql);
+              query.setParameter("banned", "True");
+          } else {
+              String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+              Query query = session2.createQuery(hql);
+              query.setParameter("banned", "False");
+          }
+          int answer = query.executeUpdate();
+          tx2.commit();
+      } catch (Exception e) {
+          if (tx2 != null) tx2.rollback();
+          e.printStackTrace();
+      } finally {
+          session2.close();
+      }
+    }
+
+    public boolean isBanned(String username) {
+        Session session1 = factory1.openSession();
+        List<Boolean> answer = (List) new ArrayList<Boolean>();
+        Transaction tx1 = null;
+        try {
+            tx1 = session1.beginTransaction();
+            String hql = "SELECT banned From UserData Where username = '" + username + "'";
+              Query query = session1.createQuery(hql);
+              answer = query.list();
+              tx1.commit();
+        } catch (Exception e) {
+            if (tx1 != null) tx1.rollback();
+            e.printStackTrace();
+        } finally {
+            session1.close();
+        }
+
+        boolean ans = answer.get(0);
+        return ans;
     }
 
 }

@@ -35,12 +35,12 @@ public class UserManager {
      * Creates a new instance of UserManager
      */
     public UserManager() {
-        try{
-         factory = new Configuration().configure().buildSessionFactory();
-      }catch (Throwable ex) { 
-         System.err.println("Failed to create sessionFactory object." + ex);
-         throw new ExceptionInInitializerError(ex); 
-      }
+        try {
+            factory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }
         createUserMap();
     }
     
@@ -74,7 +74,7 @@ public class UserManager {
             session.save(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();

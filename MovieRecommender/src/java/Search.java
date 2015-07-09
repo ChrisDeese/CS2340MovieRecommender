@@ -1,24 +1,24 @@
 
 import java.io.BufferedReader;
 import java.io.Serializable;
-import java.util.Iterator;
+
 import java.util.ArrayList;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
+
 import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import java.util.Scanner;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,9 +29,10 @@ import org.json.simple.parser.ParseException;
 /**
  * @author jacob
  */
- @ManagedBean
- @SessionScoped
+@ManagedBean
+@SessionScoped
 public class Search implements Serializable {
+
     private JSONParser parser;
     private String input;
     private List<Movie> movies;
@@ -42,21 +43,21 @@ public class Search implements Serializable {
      */
     public Search() {
         parser = new JSONParser();
-        try{
+        try {
             factory = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) { 
+        } catch (Throwable ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
-            throw new ExceptionInInitializerError(ex); 
+            throw new ExceptionInInitializerError(ex);
         }
     }
-    
+
     /**
      * gets input
      */
     public String getInput() {
         return this.input;
     }
-    
+
     /**
      * Set input
      */
@@ -66,17 +67,22 @@ public class Search implements Serializable {
 
     /**
      * Finds a list of movies that match a string passed in
+     *
      * @param movie title
      */
     public String find(String movie) throws IOException, Exception {
         URL jsonRequest = null;
         movie = movie.replaceAll(" ", "_");
         try {
-            jsonRequest = new URL("http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=yedukp76ffytfuy24zsqk7f5&q=" + movie + "&page_limit=20");
+            jsonRequest = new URL(
+                    "http://api.rottentomatoes.com/api/public/v1.0/movies.json?"
+                    + "apikey=yedukp76ffytfuy24zsqk7f5&q=" + movie
+                    + "&page_limit=20");
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null,
+                    ex);
         }
-        
+
         String response2 = sendGet(jsonRequest);
         //URLConnection connection = jsonRequest.openConnection();
         //connection.setDoOutput(true);
@@ -86,7 +92,8 @@ public class Search implements Serializable {
         try {
             obj = parser.parse(response2);
         } catch (ParseException ex) {
-            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Search.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
         JSONObject jsonO = (JSONObject) obj;
         JSONArray json = (JSONArray) jsonO.get("movies");
@@ -105,12 +112,16 @@ public class Search implements Serializable {
     /**
      * Sets the movie list to a list of the newest movies in theaters
      */
-    public String newDVD() throws MalformedURLException, IOException, Exception {
+    public String newDVD() throws MalformedURLException,
+            IOException, Exception {
         URL jsonRequest = null;
         try {
-            jsonRequest = new URL("http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=20");
+            jsonRequest = new URL("http://api.rottentomatoes.com/api/public/v1"
+                    + ".0/lists/dvds/new_releases.json?apikey=yedukp76ffyt"
+                    + "fuy24zsqk7f5&page_limit=20");
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Search.class.getName()).log(Level.SEVERE,
+                    null, ex);
         }
 
         String response2 = sendGet(jsonRequest);
@@ -122,7 +133,8 @@ public class Search implements Serializable {
         try {
             obj = parser.parse(response2);
         } catch (ParseException ex) {
-            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null,
+                    ex);
         }
         JSONObject jsonO = (JSONObject) obj;
         JSONArray json = (JSONArray) jsonO.get("movies");
@@ -145,9 +157,12 @@ public class Search implements Serializable {
     public String newTheater() throws IOException, Exception {
         URL jsonRequest = null;
         try {
-            jsonRequest = new URL("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=20");
+            jsonRequest = new URL("http://api.rottentomatoes.com/api/public/"
+                    + "v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffy"
+                    + "tfuy24zsqk7f5&page_limit=20");
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Search.class.getName()).log(Level.SEVERE,
+                    null, ex);
         }
         String response2 = sendGet(jsonRequest);
         //URLConnection connection = jsonRequest.openConnection();
@@ -158,7 +173,8 @@ public class Search implements Serializable {
         try {
             obj = parser.parse(response2);
         } catch (ParseException ex) {
-            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Search.class.getName()).log(Level.SEVERE,
+                    null, ex);
         }
         JSONObject jsonO = (JSONObject) obj;
         JSONArray json = (JSONArray) jsonO.get("movies");
@@ -173,54 +189,55 @@ public class Search implements Serializable {
         movies = results;
         return "newMovies";
     }
-    
+
     /**
      * Send get request to the RT API
+     *
      * @param url
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
-    private String sendGet(URL url) throws Exception{
+    private String sendGet(URL url) throws Exception {
         URL obj = url;
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-            // optional default is GET
-            con.setRequestMethod("GET");
+        // optional default is GET
+        con.setRequestMethod("GET");
 
-            //add request header
-            //con.setRequestProperty("User-Agent", USER_AGENT);
+        //add request header
+        //con.setRequestProperty("User-Agent", USER_AGENT);
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'GET' request to URL : " + url);
+        System.out.println("Response Code : " + responseCode);
 
-            int responseCode = con.getResponseCode();
-            System.out.println("\nSending 'GET' request to URL : " + url);
-            System.out.println("Response Code : " + responseCode);
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response;
+        response = new StringBuffer();
 
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response;
-                                response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-            }
-            in.close();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
         return response.toString();
     }
 
     /**
      * Returns the list saved by this search object
+     *
      * @return movie list
      */
     public List<Movie> getMovies() {
         return movies;
     }
-    
+
     /**
      * Adds movies to the database
      */
     public void addMovies() {
-        
-        for (Movie m: movies) {
+
+        for (Movie m : movies) {
             Session session = factory.openSession();
             Transaction tx = null;
             try {
@@ -228,13 +245,14 @@ public class Search implements Serializable {
                 session.save(m);
                 tx.commit();
             } catch (HibernateException e) {
-                if (tx != null) tx.rollback();
+                if (tx != null) {
+                    tx.rollback();
+                }
                 e.printStackTrace();
             } finally {
                 session.close();
             }
         }
-        
+
     }
-    
 }

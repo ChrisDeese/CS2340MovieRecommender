@@ -44,26 +44,26 @@ public class Movie {
     
     public void rateMovie(int i) {
         this.setRatingCount(this.getRatingCount() + 1);
-         this.setRatingTotal(this.getRatingTotal() + i);
+        this.setRatingTotal(this.getRatingTotal() + i);
         this.setRating(this.getRatingTotal() / this.getRatingCount());
-         try{
-         factory2 = new Configuration().configure().buildSessionFactory();
-      }catch (Throwable ex) { 
-         System.err.println("Failed to create sessionFactory object." + ex);
-         throw new ExceptionInInitializerError(ex); 
-      }
-         System.out.println(this.movieId);
-         Session session = factory2.openSession();
-         Query query = session.createQuery("from Movie where id = '" + this.Id + "'");
-         List<Movie> movs = query.list();
-         System.out.println(movs.size());
-         Transaction tx = null;
-         Movie mov = movs.get(0);
-         mov.setRatingCount(mov.getRatingCount() + 1);
-         mov.setRatingTotal(mov.getRatingTotal() + i);
-         mov.setRating(mov.getRatingTotal() / mov.getRatingCount());
-         session.save(mov);
-         tx.commit();
+        try {
+            factory2 = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }
+        System.out.println(this.movieId);
+        Session session = factory2.openSession();
+        Query query = session.createQuery("from Movie where id = '" + this.Id + "'");
+        List<Movie> movs = query.list();
+        System.out.println(movs.size());
+        Transaction tx = null;
+        Movie mov = movs.get(0);
+        mov.setRatingCount(mov.getRatingCount() + 1);
+        mov.setRatingTotal(mov.getRatingTotal() + i);
+        mov.setRating(mov.getRatingTotal() / mov.getRatingCount());
+        session.save(mov);
+        tx.commit();
     }
 
     /**
@@ -177,7 +177,7 @@ public class Movie {
      * @return synopsis
      */
     public String getSynopsis() {
-        System.out.print((String) json.get("synopsis"));
+        //System.out.print((String) json.get("synopsis"));
         return (String) json.get("synopsis");
     }
 
@@ -250,7 +250,7 @@ public class Movie {
      * @return thumbnail
      */
     public String getThumbnail() {
-        System.out.print((String) json.get("thumbnail"));
+        //System.out.print((String) json.get("thumbnail"));
         return (String) json.get("thumbnail");
     }
 

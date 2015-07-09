@@ -74,7 +74,7 @@ public class UserData {
     }    
     
     public void setBanned(boolean bool) {
-        this.banned=bool;
+        this.banned = bool;
     }
        
     /**

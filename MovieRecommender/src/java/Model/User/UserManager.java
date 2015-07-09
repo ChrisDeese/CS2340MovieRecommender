@@ -22,14 +22,12 @@ import org.hibernate.cfg.Configuration;
  *
  * @author chris
  */
-@ManagedBean (name = "userManager")
+@ManagedBean(name = "userManager")
 @ApplicationScoped
 public class UserManager {
 
-
     private static SessionFactory factory;
     private Map<String, UserData> users = new HashMap<>();
-
 
     /**
      * Creates a new instance of UserManager
@@ -37,16 +35,17 @@ public class UserManager {
     public UserManager() {
         try {
             factory = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) { 
+        } catch (Throwable ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
-            throw new ExceptionInInitializerError(ex); 
+            throw new ExceptionInInitializerError(ex);
         }
         createUserMap();
     }
-    
+
     /**
      * returns the User Map for Usermanager
-     * @return 
+     *
+     * @return
      */
     Map<String, UserData> getMap() {
         return this.users;
@@ -54,6 +53,7 @@ public class UserManager {
 
     /**
      * Finds a user in the database using a username key
+     *
      * @return user if username is database, null otherwise
      */
     UserData find(String username) {
@@ -62,11 +62,12 @@ public class UserManager {
 
     /**
      * Adds user to the database
+     *
      * @param user
      */
     public void addUser(UserData user) {
         users.put(user.getUsername(), user);
-        
+
         Session session = factory.openSession();
         Transaction tx = null;
         try {
@@ -74,7 +75,9 @@ public class UserManager {
             session.save(user);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
+            if (tx != null) {
+                tx.rollback();
+            }
             e.printStackTrace();
         } finally {
             session.close();
@@ -91,7 +94,7 @@ public class UserManager {
         }
         return list;
     }
-    
+
     /**
      * Creates UserMap from the database on construction
      */
@@ -104,7 +107,7 @@ public class UserManager {
             System.out.println(u.getUsername());
             System.out.println(u.getMajor());
             System.out.println(u.getAdmin());
-            
+
             users.put(u.getName(), u);
         }
         System.out.println(users.size());

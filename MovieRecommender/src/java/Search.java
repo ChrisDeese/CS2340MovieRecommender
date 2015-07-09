@@ -43,11 +43,11 @@ public class Search implements Serializable {
     public Search() {
         parser = new JSONParser();
         try{
-         factory = new Configuration().configure().buildSessionFactory();
-      }catch (Throwable ex) { 
-         System.err.println("Failed to create sessionFactory object." + ex);
-         throw new ExceptionInInitializerError(ex); 
-      }
+            factory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }
     }
     
     /**
@@ -222,17 +222,17 @@ public class Search implements Serializable {
         
         for (Movie m: movies) {
             Session session = factory.openSession();
-        Transaction tx = null;
-                try {
-            tx = session.beginTransaction();
-            session.save(m);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-                    session.close();
-                }
+            Transaction tx = null;
+            try {
+                tx = session.beginTransaction();
+                session.save(m);
+                tx.commit();
+            } catch (HibernateException e) {
+                if (tx != null) tx.rollback();
+                e.printStackTrace();
+            } finally {
+                session.close();
+            }
         }
         
     }

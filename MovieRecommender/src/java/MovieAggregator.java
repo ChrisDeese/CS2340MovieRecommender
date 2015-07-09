@@ -34,12 +34,12 @@ public class MovieAggregator {
      * Constructor for MovieAggregator
      */
     public MovieAggregator() {
-        try{
-         factory = new Configuration().configure().buildSessionFactory();
-      }catch (Throwable ex) { 
-         System.err.println("Failed to create sessionFactory object." + ex);
-         throw new ExceptionInInitializerError(ex); 
-      }
+        try {
+            factory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }
         createMovieMap();
     }
     

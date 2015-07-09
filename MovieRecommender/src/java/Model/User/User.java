@@ -25,6 +25,7 @@ import org.hibernate.cfg.Configuration;
 @ManagedBean
 @SessionScoped
 public class User implements Serializable {
+
     private String username;
     private String password;
     private String name;
@@ -35,7 +36,7 @@ public class User implements Serializable {
 
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
-    
+
     private static SessionFactory factory1;
 
     /**
@@ -49,24 +50,26 @@ public class User implements Serializable {
         input = "";
         try {
             factory1 = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) { 
+        } catch (Throwable ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
-            throw new ExceptionInInitializerError(ex); 
+            throw new ExceptionInInitializerError(ex);
         }
     }
-    
+
     /**
      * returns the major of the user
-     * @return 
+     *
+     * @return
      */
     public String getMajor() {
         UserData u = userManager.getMap().get(this.username);
         return u.getMajor();
     }
-    
+
     /**
      * sets the major of the user
-     * @param major 
+     *
+     * @param major
      */
     public void setMajor(String major) {
         this.major = major;
@@ -74,6 +77,7 @@ public class User implements Serializable {
 
     /**
      * Returns username of this user
+     *
      * @return username
      */
     public String getUsername() {
@@ -82,6 +86,7 @@ public class User implements Serializable {
 
     /**
      * Returns password of this user
+     *
      * @return password
      */
     public String getPassword() {
@@ -90,6 +95,7 @@ public class User implements Serializable {
 
     /**
      * Returns name of this user
+     *
      * @return name
      */
     public String getName() {
@@ -98,14 +104,16 @@ public class User implements Serializable {
 
     /**
      * Sets the real name of this user
+     *
      * @param name
      */
-     public void setName(String name) {
-        this.name =name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
      * Sets username of this user
+     *
      * @param username
      */
     public void setUsername(String un) {
@@ -114,6 +122,7 @@ public class User implements Serializable {
 
     /**
      * Sets password of this user
+     *
      * @param password
      */
     public void setPassword(String p) {
@@ -122,6 +131,7 @@ public class User implements Serializable {
 
     /**
      * Logs in user. If password is wrong, login fails
+     *
      * @return page redirect
      */
     public String login() {
@@ -136,8 +146,8 @@ public class User implements Serializable {
                     + "password field empty."
                     + " Please fill out the required fields."));
             return null;
-        }
-        else if (this.username.length() > 0 && this.getPassword().length() == 0) {
+        } else if (this.username.length() > 0 && this.getPassword().
+                length() == 0) {
             username = "";
             password = "";
             //System.out.println("No such user found or password wrong");
@@ -145,8 +155,8 @@ public class User implements Serializable {
             context.addMessage(null, new FacesMessage("Password field empty."
                     + " Please fill out the required fields."));
             return null;
-        }
-        else if (this.username.length() == 0 && this.getPassword().length() > 0) {
+        } else if (this.username.length() == 0 && this.getPassword().
+                length() > 0) {
             username = "";
             password = "";
             //System.out.println("No such user found or password wrong");
@@ -154,14 +164,13 @@ public class User implements Serializable {
             context.addMessage(null, new FacesMessage("Username field empty."
                     + " Please fill out the required fields."));
             return null;
-        }
-
-        else if (data == null || !data.checkP(password)) {
+        } else if (data == null || !data.checkP(password)) {
             username = "";
             password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Username or Password incorrect"));
+            context.addMessage(null, new FacesMessage(
+                    "Username or Password incorrect"));
             return null;
         }
         System.out.println("Login Success");
@@ -170,21 +179,24 @@ public class User implements Serializable {
         flash.setKeepMessages(true);
         flash.setRedirect(true);
         facesContext.addMessage(null, new FacesMessage(
-        "You successfully logged in!", ""));
+                "You successfully logged in!", ""));
         return "index.xhtml?faces-redirect=true";
     }
 
     /**
      * Logs out user
+     *
      * @return page redirect
      */
     public String logout() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext().
+                invalidateSession();
         return "welcomePage.xhtml?faces-redirect=true";
     }
 
     /**
      * Registers user. If username is already taken, registration fails
+     *
      * @return page redirect
      */
     public String register() {
@@ -214,9 +226,11 @@ public class User implements Serializable {
                     + " Please fill out the required fields."));
             return null;
         } else if (userManager.find(username) != null) {
-            System.out.println("Username already taken, please choose another.");
+            System.out.println(""
+                    + "Username already taken, please choose another.");
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Username already taken"));
+            context.addMessage(null, new FacesMessage(""
+                    + "Username already taken"));
             return null;
         }
 
@@ -229,7 +243,8 @@ public class User implements Serializable {
     }
 
     /**
-     * Edits the profile of the user, including name, password, and admin privileges
+     * Edits the profile of the user, name, password, and admin privileges
+     *
      * @return page redirect
      */
     public String editProf() {
@@ -250,14 +265,15 @@ public class User implements Serializable {
                     + " Please fill out the required fields."));
             return null;
         }
-        
+
         UserData data = userManager.find(username);
         Session session = factory1.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
             System.out.println(data.getUserId());
-            UserData sqldata = (UserData) session.load(UserData.class, data.getUserId());
+            UserData sqldata = (UserData) session.load(UserData.class,
+                    data.getUserId());
             data.setName(name);
             sqldata.setName(name);
             data.setPassword(password);
@@ -267,7 +283,9 @@ public class User implements Serializable {
             session.save(sqldata);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
+            if (tx != null) {
+                tx.rollback();
+            }
             e.printStackTrace();
         } finally {
             session.close();
@@ -278,21 +296,25 @@ public class User implements Serializable {
 
     /**
      * Cancels login/registration
+     *
      * @return page redirect
      */
     public String cancel() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext().
+                invalidateSession();
         return "welcomePage.xhtml?faces-redirect=true";
     }
 
     /**
      * Sets the user manager for this user, which is used as the database
+     *
      * @param userManager
      */
     public void setUserManager(UserManager um) {
         userManager = um;
     }
-    public boolean checkAdmin(){
+
+    public boolean checkAdmin() {
         return !userManager.find(this.username).getAdmin();
     }
 

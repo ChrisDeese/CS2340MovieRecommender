@@ -24,7 +24,7 @@ import org.hibernate.cfg.Configuration;
  */
 @ManagedBean
 @SessionScoped
-public class User implements Serializable{
+public class User implements Serializable {
     private String username;
     private String password;
     private String name;
@@ -45,14 +45,14 @@ public class User implements Serializable{
         username = "";
         password = "";
         name = "";
-        major="";
+        major = "";
         input = "";
-         try{
-         factory1 = new Configuration().configure().buildSessionFactory();
-      }catch (Throwable ex) { 
-         System.err.println("Failed to create sessionFactory object." + ex);
-         throw new ExceptionInInitializerError(ex); 
-      }
+        try {
+            factory1 = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) { 
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex); 
+        }
     }
     
     /**
@@ -127,9 +127,9 @@ public class User implements Serializable{
     public String login() {
         UserData data = userManager.find(username);
 
-        if (this.username.length() == 0 && this.getPassword().length()== 0) {
-            username="";
-            password="";
+        if (this.username.length() == 0 && this.getPassword().length() == 0) {
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username and "
@@ -137,18 +137,18 @@ public class User implements Serializable{
                     + " Please fill out the required fields."));
             return null;
         }
-        else if (this.username.length()> 0 && this.getPassword().length()== 0) {
-            username="";
-            password="";
+        else if (this.username.length() > 0 && this.getPassword().length() == 0) {
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Password field empty."
                     + " Please fill out the required fields."));
             return null;
         }
-        else if (this.username.length()== 0 && this.getPassword().length()> 0) {
-            username="";
-            password="";
+        else if (this.username.length() == 0 && this.getPassword().length() > 0) {
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username field empty."
@@ -157,21 +157,21 @@ public class User implements Serializable{
         }
 
         else if (data == null || !data.checkP(password)) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username or Password incorrect"));
             return null;
         }
         System.out.println("Login Success");
-            FacesContext facesContext = FacesContext.getCurrentInstance();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         Flash flash = facesContext.getExternalContext().getFlash();
         flash.setKeepMessages(true);
         flash.setRedirect(true);
         facesContext.addMessage(null, new FacesMessage(
-        "You successfully logged in!",""));
-            return "index.xhtml?faces-redirect=true";
+        "You successfully logged in!", ""));
+        return "index.xhtml?faces-redirect=true";
     }
 
     /**
@@ -189,8 +189,8 @@ public class User implements Serializable{
      */
     public String register() {
         if (this.username.length() == 0 && this.getPassword().length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username and "
@@ -198,16 +198,16 @@ public class User implements Serializable{
                     + " Please fill out the required fields."));
             return null;
         } else if (this.getPassword().length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Password field empty."
                     + " Please fill out the required fields."));
             return null;
         } else if (this.username.length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username field empty."
@@ -234,16 +234,16 @@ public class User implements Serializable{
      */
     public String editProf() {
         if (this.name.length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Name field empty."
                     + " Please fill out the required fields."));
             return null;
         } else if (this.getPassword().length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Password field empty."
@@ -267,7 +267,7 @@ public class User implements Serializable{
             session.save(sqldata);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();

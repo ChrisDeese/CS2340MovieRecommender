@@ -56,6 +56,9 @@ public class UserData {
         this.major = major;
     }
 
+    /**
+     * return the major of the user
+     */
     public String getMajor() {
         return major;
     }

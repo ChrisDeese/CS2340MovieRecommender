@@ -45,11 +45,10 @@ public class RegisterTest {
     }
 
     //tests if when the username has already been registered
-
     @Test
     public void testAlreadyUsedUname() {
         user.setUsername("test3");
-        user.setPassword("pass3");
+        user.setPassword("pass2");
         user.setName("Junit");
         user.register();
         User user1 = new User();

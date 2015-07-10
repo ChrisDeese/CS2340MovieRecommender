@@ -70,11 +70,11 @@ public class editProfTests {
         assertEquals("ViewProfile", u.editProf());
         assertEquals("test", u.getName());
         assertEquals("test", u.getPassword());
-        assertEquals(0, u.getMajor());
+        assertEquals(Majors.NONE, u.getMajor());
         ud = um.find("test");
         assertEquals("test", ud.getName());
         assertEquals("test", ud.getPassword());
-        assertEquals(0, ud.getMajor());
+        assertEquals(Majors.NONE, ud.getMajor());
     }
 
     /*
@@ -86,11 +86,11 @@ public class editProfTests {
         assertEquals("ViewProfile", u.editProf());
         assertEquals("testName", u.getName());
         assertEquals("test", u.getPassword());
-        assertEquals(0, u.getMajor());
+        assertEquals(Majors.NONE, u.getMajor());
         ud = um.find("test");
         assertEquals("testName", ud.getName());
         assertEquals("test", ud.getPassword());
-        assertEquals(0, ud.getMajor());
+        assertEquals(Majors.NONE, ud.getMajor());
     }
 
     /*
@@ -102,11 +102,11 @@ public class editProfTests {
         assertEquals("ViewProfile", u.editProf());
         assertEquals("test", u.getName());
         assertEquals("testPass", u.getPassword());
-        assertEquals(0, u.getMajor());
+        assertEquals(Majors.NONE, u.getMajor());
         ud = um.find("test");
         assertEquals("test", ud.getName());
         assertEquals("testPass", ud.getPassword());
-        assertEquals(0, ud.getMajor());
+        assertEquals(Majors.NONE, ud.getMajor());
     }
 
     /*
@@ -118,10 +118,10 @@ public class editProfTests {
         assertEquals("ViewProfile", u.editProf());
         assertEquals("test", u.getName());
         assertEquals("testPass", u.getPassword());
-        assertEquals(3, u.getMajor());
+        assertEquals(Majors.APP_MATH, u.getMajor());
         ud = um.find("test");
         assertEquals("test", ud.getName());
         assertEquals("test", ud.getPassword());
-        assertEquals(3, ud.getMajor());
+        assertEquals(Majors.APP_MATH, ud.getMajor());
     }
 }

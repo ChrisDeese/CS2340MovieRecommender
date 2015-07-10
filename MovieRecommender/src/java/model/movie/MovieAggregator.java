@@ -92,6 +92,9 @@ public class MovieAggregator {
      */
     public List makeMajorRecommendations(String major) {
         recommendations = new ArrayList<Movie>();
+        if (major == null) {
+            return recommendations;
+        }
         for (String s : movies.keySet()) {
             //System.out.println(movies.get(s).getMajor());
             if (movies.get(s).getMajor() != null) {

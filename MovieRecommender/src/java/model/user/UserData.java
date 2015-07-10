@@ -21,10 +21,9 @@ public class UserData {
     private int userId;
     private int major;
 
-    //To add later
-    /*private String bio;
-     private String location;
-     private int age;*/
+   /**
+    * generic constructor
+    */
     UserData() {
 
     }
@@ -44,8 +43,8 @@ public class UserData {
      *
      * @return p = password
      */
-    boolean checkP(String p) {
-        return (p.equals(password));
+    public boolean checkP(String p) {
+        return p.equals(password);
     }
 
     /**

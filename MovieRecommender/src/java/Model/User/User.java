@@ -313,6 +313,11 @@ public class User implements Serializable {
     public void setUserManager(UserManager um) {
         userManager = um;
     }
+    /**
+     * checks to see if the user is an admin or not
+     *
+     * @return the boolean for the disabled button
+     */
 
     public boolean checkAdmin() {
         return !userManager.find(this.username).getAdmin();

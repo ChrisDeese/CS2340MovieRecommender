@@ -1,6 +1,6 @@
 package util;
 
-import Model.Movie.Movie;
+import model.movie.Movie;
 import java.io.BufferedReader;
 import java.io.Serializable;
 
@@ -35,9 +35,9 @@ import org.json.simple.parser.ParseException;
 @SessionScoped
 public class Search implements Serializable {
 
-    private JSONParser parser;
+    private final JSONParser parser;
     private String input;
-    private List<Movie> movies;
+    private transient List<Movie> movies;
     private static SessionFactory factory;
 
     /**
@@ -47,7 +47,7 @@ public class Search implements Serializable {
         parser = new JSONParser();
         try {
             factory = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
@@ -85,7 +85,7 @@ public class Search implements Serializable {
                     ex);
         }
 
-        String response2 = sendGet(jsonRequest);
+        final String response2 = sendGet(jsonRequest);
         //URLConnection connection = jsonRequest.openConnection();
         //connection.setDoOutput(true);
         //Scanner scanner = new Scanner(jsonRequest.openStream());
@@ -217,9 +217,10 @@ public class Search implements Serializable {
         String inputLine;
         StringBuffer response;
         response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
+        inputLine = in.readLine();
+        while (inputLine != null) {
             response.append(inputLine);
+             inputLine = in.readLine();
         }
         in.close();
         return response.toString();

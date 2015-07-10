@@ -33,12 +33,12 @@ public class User implements Serializable {
     private String password;
     private String name;
     private String major;
-    private boolean admin;
+    private transient boolean admin;
 
-    private String input;
+    private final String input;
 
     @ManagedProperty("#{userManager}")
-    private UserManager userManager;
+    private transient UserManager userManager;
 
     private static SessionFactory factory1;
 
@@ -53,7 +53,7 @@ public class User implements Serializable {
         input = "";
         try {
             factory1 = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
@@ -433,8 +433,8 @@ public class User implements Serializable {
             session1.close();
         }
 
-        boolean ans = answer.get(0);
-        return ans;
+        
+        return answer.get(0);
     }
 
     /**

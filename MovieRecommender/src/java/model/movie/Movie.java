@@ -14,9 +14,9 @@ import org.json.simple.JSONObject;
  */
 public class Movie {
 
-    private JSONObject json;
+    private transient JSONObject json;
     private String title;
-    private String iD;
+    private transient String iD;
     private int rating;
     private int movieId;
     private int ratingTotal;
@@ -25,10 +25,9 @@ public class Movie {
 
     private static SessionFactory factory2;
 
-    //TODO
-    //Cast
-    //Reviews
-    //Clips
+    /**
+     * generic constructor
+     */
     public Movie() {
 
     }
@@ -50,7 +49,7 @@ public class Movie {
         this.setRating(this.getRatingTotal() / this.getRatingCount());
         try {
             factory2 = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }

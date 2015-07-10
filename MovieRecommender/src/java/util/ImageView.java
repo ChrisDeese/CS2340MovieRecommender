@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 public class ImageView {
 
-    private List<String> images;
+    private transient List<String> images;
 
     @PostConstruct
     public void init() {

@@ -381,7 +381,11 @@ public class User implements Serializable{
 //      }
 //    }
 
-
+    /**
+     * Returns if this user is banned
+     * @param username
+     * @return 
+     */
     public boolean isBanned(String username) {
         Session session1 = factory1.openSession();
         List<Boolean> answer = (List) new ArrayList<Boolean>();

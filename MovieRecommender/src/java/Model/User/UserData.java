@@ -63,18 +63,34 @@ public class UserData {
         return major;
     }
 
+    /**
+     * Get the userid of the UserData
+     * @return 
+     */
     public int getUserId() {
         return this.userId;
     }
-
+    
+    /**
+     * sets the userId of the userData
+     * @param id 
+     */
     public void setUserId(int id) {
         this.userId = id;
     }
 
+    /**
+     * returns the ban status of the user
+     * @return 
+     */
     public boolean getBanned() {
         return this.banned;
     }
 
+    /**
+     * sets the ban status of the user
+     * @param bool 
+     */
     public void setBanned(boolean bool) {
         this.banned = bool;
     }
@@ -88,6 +104,10 @@ public class UserData {
         this.name = name;
     }
 
+    /**
+     * gets the name for this user
+     * @return 
+     */
     public String getName() {
         return this.name;
     }
@@ -101,6 +121,10 @@ public class UserData {
         this.admin = b;
     }
 
+    /**
+     * returns if the user is an admin
+     * @return 
+     */
     public boolean getAdmin() {
         return this.admin;
     }

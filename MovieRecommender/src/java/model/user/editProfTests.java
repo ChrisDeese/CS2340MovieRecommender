@@ -1,7 +1,12 @@
 package org.eclipse.e4.core.internal.tests;
 
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import model.user.User;
+import model.user.UserData;
+import model.user.UserManager;
 
 public class editProfTests {
     User u;
@@ -9,6 +14,10 @@ public class editProfTests {
     UserData ud;
 
     public editProfTests() {
+    }
+
+    @Before
+    public void setUp() {
         u = new User();
         um = new UserManager();
         um.addUser(new UserData("test", "test"));
@@ -18,30 +27,45 @@ public class editProfTests {
         u.setPassword("test");
     }
 
+    /*
+     * Test name length being zero
+     */
     @Test
     public void nameLengthZero() {
         u.setName("");
         assertNull(u.editProf());
     }
 
+    /*
+     * Test password length being zero
+     */
     @Test
     public void passLengthZero() {
         u.setPassword("");
         assertNull(u.editProf());
     }
 
+    /*
+     * Test name being null
+     */
     @Test
     public void nameNull() {
         u.setName(null);
         assertNull(u.editProf());
     }
 
+    /*
+     * Test password being null
+     */
     @Test
     public void passNull() {
         u.setPassword(null);
         assertNull(u.editProf());
     }
 
+    /*
+     * Test editProf with no values changed
+     */
     @Test
     public void sameNamePassMajor() {
         assertEquals("ViewProfile", u.editProf());
@@ -53,6 +77,9 @@ public class editProfTests {
         assertEquals(0, ud.getMajor());
     }
 
+    /*
+     * Test editProf with name changed
+     */
     @Test
     public void differentName() {
         u.setName("testName");
@@ -65,6 +92,9 @@ public class editProfTests {
         assertEquals(0, ud.getMajor());
     }
 
+    /*
+     * Test editProf with password changed
+     */
     @Test
     public void differentPass() {
         u.setPassword("testPass");
@@ -77,6 +107,9 @@ public class editProfTests {
         assertEquals(0, ud.getMajor());
     }
 
+    /*
+     * Test editProf with major changed
+     */
     @Test
     public void differentMajor() {
         u.setMajor(3);

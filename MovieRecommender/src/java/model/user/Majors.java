@@ -1,3 +1,5 @@
+package model.user;
+
 /**
  * @author jacob
  */

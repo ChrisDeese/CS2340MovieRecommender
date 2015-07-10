@@ -1,7 +1,7 @@
-package Util;
+package util;
 
 
-import Model.Movie.Movie;
+import model.movie.Movie;
 import java.io.BufferedReader;
 import java.io.Serializable;
 

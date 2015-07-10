@@ -32,10 +32,8 @@
                     <p:panel id="panel2"  style="overflow: auto;width: 250px; height: 500px; margin-top:0px;border-width:0">
                        Search for movies. You also have the option to search for new DVD's and movie releases.
                        <h:panelGrid columns="1">
-                             <p:commandButton update="panel" value="Back"
-                             action = "index"/>
                             
-            
+                        <p:commandButton value="back" action="index" update="panel2"/>
                         </h:panelGrid>
                        
                        
@@ -63,7 +61,8 @@
                 <h:panelGrid columns="2" cellpadding="5">
                 <p:commandButton update="panel" value="Submit"
                              icon="ui-icon-check" action="#{search.find(search.input)}"/>
-                
+                <p:commandButton update="panel" value="Back"
+                             action = "index"/>
                 </h:panelGrid>
 
                     <p>Or find new movies releases and DVD's</p>

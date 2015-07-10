@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
+import javax.faces.event.ValueChangeEvent;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -56,7 +57,7 @@ public class UserManager {
      *
      * @return user if username is database, null otherwise
      */
-    UserData find(String username) {
+    public UserData find(String username) {
         return users.get(username);
     }
 
@@ -112,4 +113,40 @@ public class UserManager {
         }
         System.out.println(users.size());
     }
+    
+    public boolean isBanned(String username) {
+        return users.get(username).getBanned();
+    }
+    
+    public void checkBoxListener(ValueChangeEvent event) {
+        
+    }
+    
+     public void changeBan(String username) {
+      Session session2 = factory.openSession();
+      Query query;
+      Transaction tx2 = null;
+      try {
+          tx2 = session2.beginTransaction();
+          //String username = u.getUsername();
+
+          if (!isBanned(username)) {
+              String hql = "UPDATE UserData SET banned = true Where username = '" + username + "'";
+              query = session2.createQuery(hql);
+              //query.setParameter("banned", 1);
+          } else {
+              String hql = "UPDATE UserData SET banned = false Where username = '" + username + "'";
+              query = session2.createQuery(hql);
+              //query.setParameter("banned", 0);
+          }
+          int answer = query.executeUpdate();
+          tx2.commit();
+      } catch (Exception e) {
+          if (tx2 != null) tx2.rollback();
+          e.printStackTrace();
+      } finally {
+          session2.close();
+      }
+    }
+    
 }

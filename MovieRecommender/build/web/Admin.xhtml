@@ -48,15 +48,16 @@
                 <ul>
                     <ui:repeat id = "s" value="#{userManager.userList()}" var="users">
                         <li>
-                            <h:link value="#{users}" outcome="movie">
+                            <h:link value="#{users}" outcome="user">
                                 <f:param name="id" value="#{users}"> </f:param>
                                 <!--<p:commandButton update="panel" value="ban" disabled ="false" />
                                 <p:commandButton update="panel" value="unlock"  disabled="false" />-->
                      
-                     
                             </h:link>
                             
-                            <p:selectBooleanCheckbox value=" " />
+                            <h:selectBooleanCheckbox value="#{userManager.isBanned(users)}" onclick="#{userManager.changeBan(users)}">
+                                <!--<p:ajax listener="#{userManager.changeBan(userManager.find(users))}" update="s" />-->
+                            </h:selectBooleanCheckbox>
                             
                         </li>
                     </ui:repeat>

@@ -27,7 +27,8 @@ import org.hibernate.cfg.Configuration;
  */
 @ManagedBean
 @SessionScoped
-public class User implements Serializable{
+public class User implements Serializable {
+
     private String username;
     private String password;
     private String name;
@@ -48,14 +49,14 @@ public class User implements Serializable{
         username = "";
         password = "";
         name = "";
-        major="";
+        major = "";
         input = "";
-         try{
-         factory1 = new Configuration().configure().buildSessionFactory();
-      }catch (Throwable ex) {
-         System.err.println("Failed to create sessionFactory object." + ex);
-         throw new ExceptionInInitializerError(ex);
-      }
+        try {
+            factory1 = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
     }
 
     public String getMajor() {
@@ -69,6 +70,7 @@ public class User implements Serializable{
 
     /**
      * Returns username of this user
+     *
      * @return username
      */
     public String getUsername() {
@@ -77,6 +79,7 @@ public class User implements Serializable{
 
     /**
      * Returns password of this user
+     *
      * @return password
      */
     public String getPassword() {
@@ -85,6 +88,7 @@ public class User implements Serializable{
 
     /**
      * Returns name of this user
+     *
      * @return name
      */
     public String getName() {
@@ -93,14 +97,16 @@ public class User implements Serializable{
 
     /**
      * Sets the real name of this user
+     *
      * @param name
      */
-     public void setName(String name) {
-        this.name =name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
      * Sets username of this user
+     *
      * @param username
      */
     public void setUsername(String un) {
@@ -109,6 +115,7 @@ public class User implements Serializable{
 
     /**
      * Sets password of this user
+     *
      * @param password
      */
     public void setPassword(String p) {
@@ -117,6 +124,7 @@ public class User implements Serializable{
 
     /**
      * Logs in user. If password is wrong, login fails
+     *
      * @return page redirect
      */
     public String login() {
@@ -124,77 +132,80 @@ public class User implements Serializable{
 
         boolean banCheck = isBanned(this.username);
 
-        if (banCheck == true) {
-          FacesContext context = FacesContext.getCurrentInstance();
-          context.addMessage(null, new FacesMessage("You are banned from using"
-              + " MovieBuzz! Please contact the admin."));
-          return null;
+        if (banCheck) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("You are banned "
+                    + "from using"
+                    + " MovieBuzz! Please contact the admin."));
+            return null;
         }
 
-        if (this.username.length() == 0 && this.getPassword().length()== 0) {
-            username="";
-            password="";
+        if (this.username.length() == 0 && this.getPassword().length() == 0) {
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username and "
                     + "password field empty."
                     + " Please fill out the required fields."));
             return null;
-        }
-        else if (this.username.length()> 0 && this.getPassword().length()== 0) {
-            username="";
-            password="";
+        } else if (this.username.length() > 0 && this.getPassword().
+                length() == 0) {
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Password field empty."
                     + " Please fill out the required fields."));
             return null;
-        }
-        else if (this.username.length()== 0 && this.getPassword().length()> 0) {
-            username="";
-            password="";
+        } else if (this.username.length() == 0 && this.getPassword().
+                length() > 0) {
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username field empty."
                     + " Please fill out the required fields."));
             return null;
-        }
-
-        else if (data == null || !data.checkP(password)) {
-            username="";
-            password="";
+        } else if (data == null || !data.checkP(password)) {
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Username or Password incorrect"));
+            context.addMessage(null, new FacesMessage("Username or "
+                    + "Password incorrect"));
             return null;
         }
         System.out.println("Login Success");
-            FacesContext facesContext = FacesContext.getCurrentInstance();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         Flash flash = facesContext.getExternalContext().getFlash();
         flash.setKeepMessages(true);
         flash.setRedirect(true);
         facesContext.addMessage(null, new FacesMessage(
-        "You successfully logged in!",""));
-            return "index.xhtml?faces-redirect=true";
+                "You successfully logged in!", ""));
+        return "index.xhtml?faces-redirect=true";
     }
 
     /**
      * Logs out user
+     *
      * @return page redirect
      */
     public String logout() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext().
+                invalidateSession();
         return "welcomePage.xhtml?faces-redirect=true";
     }
 
     /**
      * Registers user. If username is already taken, registration fails
+     *
      * @return page redirect
      */
     public String register() {
         if (this.username.length() == 0 && this.getPassword().length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username and "
@@ -202,25 +213,27 @@ public class User implements Serializable{
                     + " Please fill out the required fields."));
             return null;
         } else if (this.getPassword().length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Password field empty."
                     + " Please fill out the required fields."));
             return null;
         } else if (this.username.length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username field empty."
                     + " Please fill out the required fields."));
             return null;
         } else if (userManager.find(username) != null) {
-            System.out.println("Username already taken, please choose another.");
+            System.out.println("Username already taken, p"
+                    + "lease choose another.");
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Username already taken"));
+            context.addMessage(null, new FacesMessage("Username "
+                    + "already taken"));
             return null;
         }
 
@@ -233,21 +246,23 @@ public class User implements Serializable{
     }
 
     /**
-     * Edits the profile of the user, including name, password, and admin privileges
+     * Edits the profile of the user, including name, password, and admin
+     * privileges
+     *
      * @return page redirect
      */
     public String editProf() {
         if (this.name.length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Name field empty."
                     + " Please fill out the required fields."));
             return null;
         } else if (this.getPassword().length() == 0) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Password field empty."
@@ -261,7 +276,8 @@ public class User implements Serializable{
         try {
             tx = session.beginTransaction();
             System.out.println(data.getUserId());
-            UserData sqldata = (UserData) session.load(UserData.class, data.getUserId());
+            UserData sqldata = (UserData) session.load(UserData.class,
+                    data.getUserId());
             data.setName(name);
             sqldata.setName(name);
             data.setPassword(password);
@@ -271,7 +287,9 @@ public class User implements Serializable{
             session.save(sqldata);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) {
+                tx.rollback();
+            }
             e.printStackTrace();
         } finally {
             session.close();
@@ -282,15 +300,18 @@ public class User implements Serializable{
 
     /**
      * Cancels login/registration
+     *
      * @return page redirect
      */
     public String cancel() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext().
+                invalidateSession();
         return "welcomePage.xhtml?faces-redirect=true";
     }
 
     /**
      * Sets the user manager for this user, which is used as the database
+     *
      * @param userManager
      */
     public void setUserManager(UserManager um) {
@@ -303,12 +324,15 @@ public class User implements Serializable{
         Transaction tx1 = null;
         try {
             tx1 = session1.beginTransaction();
-            String hql = "SELECT name, username, banned FROM UserData WHERE admin = False";
+            String hql = "SELECT name, username, banned "
+                    + "FROM UserData WHERE admin = False";
             Query query = session1.createQuery(hql);
             answer = query.list();
             tx1.commit();
         } catch (Exception e) {
-            if (tx1 != null) tx1.rollback();
+            if (tx1 != null) {
+                tx1.rollback();
+            }
             e.printStackTrace();
         } finally {
             session1.close();
@@ -322,7 +346,8 @@ public class User implements Serializable{
     //   try {
     //       tx2 = session2.beginTransaction();
     //       String username = u.getUsername();
-    //       String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+    //       String hql = "UPDATE UserData SET banned = :banned Where"
+    //       + "username = '" + username + "'";
     //       Query query = session2.createQuery(hql);
     //       query.setParameter("banned", "True");
     //       int answer = query.executeUpdate();
@@ -341,7 +366,8 @@ public class User implements Serializable{
     //   try {
     //       tx2 = session2.beginTransaction();
     //       String username = u.getUsername();
-    //       String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+    //       String hql = "UPDATE UserData SET banned = :banned "
+    //              + "Where username = '" + username + "'";
     //       Query query = session2.createQuery(hql);
     //       query.setParameter("banned", "True");
     //       int answer = query.executeUpdate();
@@ -353,7 +379,6 @@ public class User implements Serializable{
     //       session2.close();
     //   }
     // }
-
 //    public void changeBan(UserData u) {
 //      Session session2 = factory1.openSession();
 //      Query query;
@@ -363,11 +388,13 @@ public class User implements Serializable{
 //          String username = u.getUsername();
 //
 //          if (!this.isBanned(username)) {
-//              String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+//              String hql = "UPDATE UserData SET banned = :banned "
+//                      + "Where username = '" + username + "'";
 //              query = session2.createQuery(hql);
 //              query.setParameter("banned", "True");
 //          } else {
-//              String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+//              String hql = "UPDATE UserData SET banned = :banned Where "
+//                      + "username = '" + username + "'";
 //              query = session2.createQuery(hql);
 //              query.setParameter("banned", "False");
 //          }
@@ -380,24 +407,27 @@ public class User implements Serializable{
 //          session2.close();
 //      }
 //    }
-
     /**
      * Returns if this user is banned
+     *
      * @param username
-     * @return 
+     * @return
      */
-    public boolean isBanned(String username) {
+    public boolean isBanned(String uname) {
         Session session1 = factory1.openSession();
         List<Boolean> answer = (List) new ArrayList<Boolean>();
         Transaction tx1 = null;
         try {
             tx1 = session1.beginTransaction();
-            String hql = "SELECT banned From UserData Where username = '" + username + "'";
-              Query query = session1.createQuery(hql);
-              answer = query.list();
-              tx1.commit();
+            String hql = "SELECT banned From UserData Where username = '"
+                    + uname + "'";
+            Query query = session1.createQuery(hql);
+            answer = query.list();
+            tx1.commit();
         } catch (Exception e) {
-            if (tx1 != null) tx1.rollback();
+            if (tx1 != null) {
+                tx1.rollback();
+            }
             e.printStackTrace();
         } finally {
             session1.close();
@@ -406,14 +436,15 @@ public class User implements Serializable{
         boolean ans = answer.get(0);
         return ans;
     }
-    
+
     /**
-     * checks to see if the user is an admin or not
-+  *
+     * checks to see if the user is an admin or not +
+     *
+     *
      * @return the boolean for the disabled button
      */
-     public boolean checkAdmin() {
-         return !userManager.find(this.username).getAdmin();
-     }
+    public boolean checkAdmin() {
+        return !userManager.find(this.username).getAdmin();
+    }
 
 }

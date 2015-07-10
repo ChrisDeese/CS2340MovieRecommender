@@ -16,10 +16,10 @@ public class UserData {
     private String username;
     private String password;
     private String name;
-    private String major;
     private boolean admin;
     private boolean banned;
     private int userId;
+    private int major;
 
     //To add later
     /*private String bio;
@@ -35,6 +35,7 @@ public class UserData {
     UserData(String name, String pass) {
         this.username = name;
         this.password = pass;
+        this.major = 0;
         this.name = "";
     }
 
@@ -52,14 +53,14 @@ public class UserData {
      *
      * @param major
      */
-    public void setMajor(String major) {
+    public void setMajor(int major) {
         this.major = major;
     }
 
     /**
      * return the major of the user
      */
-    public String getMajor() {
+    public int getMajor() {
         return major;
     }
 

@@ -32,7 +32,7 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String name;
-    private String major;
+    private int major;
     private boolean admin;
 
     private String input;
@@ -252,16 +252,14 @@ public class User implements Serializable {
      * @return page redirect
      */
     public String editProf() {
-        if (this.name.length() == 0) {
-            username = "";
-            password = "";
+        if (this.getName() == null || this.getName().length() == 0) {
+            name = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Name field empty."
                     + " Please fill out the required fields."));
             return null;
-        } else if (this.getPassword().length() == 0) {
-            username = "";
+        } else if (this.getPassword() == null || this.getPassword().length() == 0) {
             password = "";
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
@@ -284,6 +282,8 @@ public class User implements Serializable {
             sqldata.setPassword(password);
             data.setAdmin(admin);
             sqldata.setAdmin(admin);
+            data.setMajor(major);
+            sqldata.setMajor(major);
             session.save(sqldata);
             tx.commit();
         } catch (HibernateException e) {

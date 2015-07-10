@@ -43,9 +43,10 @@
                 <p:column colspan="1" style="overflow: auto" >
                     <center>
             <p:panel id="panel"  style="overflow: auto;width: 500px; height: 500px; margin-top:0px;border-width:0">
-                Welcome Admin! here is a list of users
+                Welcome Admin! here is a list of users. 
+                <p><b>***Check the checkbox to ban users. Uncheck the box to unban users.***</b></p>
                 <ul>
-                    <ui:repeat value="#{userManager.userList()}" var="users">
+                    <ui:repeat id = "s" value="#{userManager.userList()}" var="users">
                         <li>
                             <h:link value="#{users}" outcome="movie">
                                 <f:param name="id" value="#{users}"> </f:param>
@@ -54,6 +55,9 @@
                      
                      
                             </h:link>
+                            
+                            <p:selectBooleanCheckbox value=" " />
+                            
                         </li>
                     </ui:repeat>
                 </ul>

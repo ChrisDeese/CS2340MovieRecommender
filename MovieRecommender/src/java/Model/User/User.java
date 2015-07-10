@@ -48,29 +48,17 @@ public class User implements Serializable {
         name = "";
         major = "";
         input = "";
-<<<<<<< Updated upstream
         try {
             factory1 = new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
-=======
-         try{
-         factory1 = new Configuration().configure().buildSessionFactory();
-      }catch (Throwable ex) {
-         System.err.println("Failed to create sessionFactory object." + ex);
-         throw new ExceptionInInitializerError(ex);
-      }
->>>>>>> Stashed changes
     }
 
     /**
      * returns the major of the user
-<<<<<<< Updated upstream
      *
-=======
->>>>>>> Stashed changes
      * @return
      */
     public String getMajor() {
@@ -80,10 +68,7 @@ public class User implements Serializable {
 
     /**
      * sets the major of the user
-<<<<<<< Updated upstream
      *
-=======
->>>>>>> Stashed changes
      * @param major
      */
     public void setMajor(String major) {
@@ -152,24 +137,9 @@ public class User implements Serializable {
     public String login() {
         UserData data = userManager.find(username);
 
-<<<<<<< Updated upstream
         if (this.username.length() == 0 && this.getPassword().length() == 0) {
             username = "";
             password = "";
-=======
-        boolean banCheck = isBanned(this.username);
-
-        if (banCheck == true) {
-          FacesContext context = FacesContext.getCurrentInstance();
-          context.addMessage(null, new FacesMessage("You are banned from using"
-              + " MovieBuzz! Please contact the admin."));
-          return null;
-        }
-
-        if (this.username.length() == 0 && this.getPassword().length()== 0) {
-            username="";
-            password="";
->>>>>>> Stashed changes
             //System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Username and "
@@ -343,7 +313,6 @@ public class User implements Serializable {
     public void setUserManager(UserManager um) {
         userManager = um;
     }
-<<<<<<< Updated upstream
     /**
      * checks to see if the user is an admin or not
      *
@@ -352,114 +321,6 @@ public class User implements Serializable {
 
     public boolean checkAdmin() {
         return !userManager.find(this.username).getAdmin();
-=======
-
-    public boolean checkAdmin(){
-        return !admin;
->>>>>>> Stashed changes
-    }
-
-    public List<UserData> getList() {
-        Session session1 = factory1.openSession();
-        List<UserData> answer = (List) new ArrayList<UserData>();
-        Transaction tx1 = null;
-        try {
-            tx1 = session1.beginTransaction();
-            String hql = "SELECT name, username, banned FROM UserData WHERE admin = False";
-            Query query = session1.createQuery(hql);
-            answer = query.list();
-            tx1.commit();
-        } catch (Exception e) {
-            if (tx1 != null) tx1.rollback();
-            e.printStackTrace();
-        } finally {
-            session1.close();
-        }
-        return answer;
-    }
-
-    // public void ban(UserData u) {
-    //   Session session2 = factory1.openSession();
-    //   Transaction tx2 = null;
-    //   try {
-    //       tx2 = session2.beginTransaction();
-    //       String username = u.getUsername();
-    //       String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
-    //       Query query = session2.createQuery(hql);
-    //       query.setParameter("banned", "True");
-    //       int answer = query.executeUpdate();
-    //       tx2.commit();
-    //   } catch (Exception e) {
-    //       if (tx2 != null) tx2.rollback();
-    //       e.printStackTrace();
-    //   } finally {
-    //       session2.close();
-    //   }
-    // }
-    //
-    // public void UnBan(UserData u) {
-    //   Session session2 = factory1.openSession();
-    //   Transaction tx2 = null;
-    //   try {
-    //       tx2 = session2.beginTransaction();
-    //       String username = u.getUsername();
-    //       String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
-    //       Query query = session2.createQuery(hql);
-    //       query.setParameter("banned", "True");
-    //       int answer = query.executeUpdate();
-    //       tx2.commit();
-    //   } catch (Exception e) {
-    //       if (tx2 != null) tx2.rollback();
-    //       e.printStackTrace();
-    //   } finally {
-    //       session2.close();
-    //   }
-    // }
-    public void changeBan(UserData u) {
-      Session session2 = factory1.openSession();
-      Transaction tx2 = null;
-      try {
-          tx2 = session2.beginTransaction();
-          String username = u.getUsername();
-
-          if (!this.isBanned(username)) {
-              String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
-              Query query = session2.createQuery(hql);
-              query.setParameter("banned", "True");
-          } else {
-              String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
-              Query query = session2.createQuery(hql);
-              query.setParameter("banned", "False");
-          }
-          int answer = query.executeUpdate();
-          tx2.commit();
-      } catch (Exception e) {
-          if (tx2 != null) tx2.rollback();
-          e.printStackTrace();
-      } finally {
-          session2.close();
-      }
-    }
-
-    public boolean isBanned(String username) {
-        Session session1 = factory1.openSession();
-        List<Boolean> answer = (List) new ArrayList<Boolean>();
-        Transaction tx1 = null;
-        try {
-            tx1 = session1.beginTransaction();
-            String hql = "SELECT banned From UserData Where username = '" + username + "'";
-              Query query = session1.createQuery(hql);
-              answer = query.list();
-              tx1.commit();
-        } catch (Exception e) {
-            if (tx1 != null) tx1.rollback();
-            e.printStackTrace();
-        } finally {
-            session1.close();
-        }
-
-        boolean ans = answer.get(0);
-        return ans;
     }
 
 }

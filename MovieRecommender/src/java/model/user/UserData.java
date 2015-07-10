@@ -65,15 +65,17 @@ public class UserData {
 
     /**
      * Get the userid of the UserData
-     * @return 
+     *
+     * @return
      */
     public int getUserId() {
         return this.userId;
     }
-    
+
     /**
      * sets the userId of the userData
-     * @param id 
+     *
+     * @param id
      */
     public void setUserId(int id) {
         this.userId = id;
@@ -81,7 +83,8 @@ public class UserData {
 
     /**
      * returns the ban status of the user
-     * @return 
+     *
+     * @return
      */
     public boolean getBanned() {
         return this.banned;
@@ -89,7 +92,8 @@ public class UserData {
 
     /**
      * sets the ban status of the user
-     * @param bool 
+     *
+     * @param bool
      */
     public void setBanned(boolean bool) {
         this.banned = bool;
@@ -106,7 +110,8 @@ public class UserData {
 
     /**
      * gets the name for this user
-     * @return 
+     *
+     * @return
      */
     public String getName() {
         return this.name;
@@ -123,7 +128,8 @@ public class UserData {
 
     /**
      * returns if the user is an admin
-     * @return 
+     *
+     * @return
      */
     public boolean getAdmin() {
         return this.admin;

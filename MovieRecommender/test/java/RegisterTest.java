@@ -5,7 +5,6 @@ package java;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,13 +44,30 @@ public class RegisterTest {
         assertEquals("Should print register success!", user.register());
     }
 
-    //test of registration with empty username
+    //tests if when the username has already been registered
+
     @Test
-    public void testNoUsername() {
-        user.setUsername("");
-        user.setPassword("pass1");
+    public void testAlreadyUsedUname() {
+        user.setUsername("test3");
+        user.setPassword("pass3");
         user.setName("Junit");
-        assertEquals("Should return 'username field empty' and not register",
+        user.register();
+        User user1 = new User();
+        user1.setUsername("test3");
+        user1.setPassword("pass3");
+        user1.setName("Junit");
+        assertEquals("Should return username already taken and not register. ",
+                user1.register());
+
+    }
+
+    //test of registration with empty name
+    @Test
+    public void testNoName() {
+        user.setUsername("dog");
+        user.setPassword("pass1");
+        user.setName("");
+        assertEquals("Should return register success!",
                 user.register());
     }
 
@@ -75,23 +91,6 @@ public class RegisterTest {
         assertEquals("Should return password and username empty and "
                 + "not register",
                 user.register());
-
-    }
-
-    //test trying to register an already taken username
-
-    @Test
-    public void testAlreadyUsedUname() {
-        user.setUsername("test3");
-        user.setPassword("pass3");
-        user.setName("Junit");
-        user.register();
-        User user1 = new User();
-        user1.setUsername("test3");
-        user1.setPassword("pass3");
-        user1.setName("Junit");
-        assertEquals("Should return username already taken and not register. ",
-                user1.register());
 
     }
 

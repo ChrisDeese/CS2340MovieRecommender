@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-  <class name="Movie" table="Features">
-  <meta attribute="class-description">
+  <class name="Model.Movie.Movie" table="Features">
+    <meta attribute="class-description">
         this contains Movie information.
     </meta>
-    <id name="movieId" type="int" column="movieId">
-        <generator class="assigned"/>
+    <id column="movieId" name="movieId" type="int">
+      <generator class="assigned"/>
     </id>
-    <property name="title" column="title" type ="string"/>
-    <property name="Id" column="id" type="string"/>
-    <property name="ratingTotal" column="ratingTotal" type="int"/>
-    <property name="ratingCount" column="ratingCount" type="int"/>
-    <property name="rating" column="rating" type="int"/>
-    <property name="major" column="major" type="string"/>
-</class>
+    <property column="title" name="title" type="string"/>
+    <property column="id" name="Id" type="string"/>
+    <property column="ratingTotal" name="ratingTotal" type="int"/>
+    <property column="ratingCount" name="ratingCount" type="int"/>
+    <property column="rating" name="rating" type="int"/>
+    <property column="major" name="major" type="string"/>
+  </class>
 </hibernate-mapping>

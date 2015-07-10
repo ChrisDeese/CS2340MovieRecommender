@@ -1,4 +1,4 @@
-package org.primefaces.showcase.view.multimedia;
+package Util;
 
 import java.util.ArrayList;
 import java.util.List;

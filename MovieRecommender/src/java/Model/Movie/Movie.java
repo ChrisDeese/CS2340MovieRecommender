@@ -1,3 +1,5 @@
+package Model.Movie;
+
 
 import java.util.List;
 import org.hibernate.Query;

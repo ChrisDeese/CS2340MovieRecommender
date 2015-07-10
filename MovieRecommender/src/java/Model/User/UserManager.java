@@ -114,14 +114,24 @@ public class UserManager {
         System.out.println(users.size());
     }
     
+    /**
+     * Find if specific user is banned
+     */
     public boolean isBanned(String username) {
         return users.get(username).getBanned();
     }
     
+    /**
+     * To be implemented 
+     */
     public void checkBoxListener(ValueChangeEvent event) {
         
     }
     
+    /**
+     * Flips the ban status of a single user.
+     * 
+     */
      public void changeBan(String username) {
       Session session2 = factory.openSession();
       Query query;

@@ -32,10 +32,6 @@ public class RecommendTest {
     public void setUp() {
         moveAg = new MovieAggregator();
     }
-    
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void testNormalRecommendation() {

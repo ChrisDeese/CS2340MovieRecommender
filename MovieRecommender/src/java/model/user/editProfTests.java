@@ -21,7 +21,6 @@ public class editProfTests {
         u = new User();
         um = new UserManager();
         um.addUser(new UserData("test", "test"));
-        ud = um.find("test");
         u.setMajor(0);
         u.setName("test");
         u.setPassword("test");
@@ -72,6 +71,7 @@ public class editProfTests {
         assertEquals("test", u.getName());
         assertEquals("test", u.getPassword());
         assertEquals(0, u.getMajor());
+        ud = um.find("test");
         assertEquals("test", ud.getName());
         assertEquals("test", ud.getPassword());
         assertEquals(0, ud.getMajor());
@@ -87,6 +87,7 @@ public class editProfTests {
         assertEquals("testName", u.getName());
         assertEquals("test", u.getPassword());
         assertEquals(0, u.getMajor());
+        ud = um.find("test");
         assertEquals("testName", ud.getName());
         assertEquals("test", ud.getPassword());
         assertEquals(0, ud.getMajor());
@@ -102,6 +103,7 @@ public class editProfTests {
         assertEquals("test", u.getName());
         assertEquals("testPass", u.getPassword());
         assertEquals(0, u.getMajor());
+        ud = um.find("test");
         assertEquals("test", ud.getName());
         assertEquals("testPass", ud.getPassword());
         assertEquals(0, ud.getMajor());
@@ -117,6 +119,7 @@ public class editProfTests {
         assertEquals("test", u.getName());
         assertEquals("testPass", u.getPassword());
         assertEquals(3, u.getMajor());
+        ud = um.find("test");
         assertEquals("test", ud.getName());
         assertEquals("test", ud.getPassword());
         assertEquals(3, ud.getMajor());

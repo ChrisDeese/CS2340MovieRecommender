@@ -32,7 +32,7 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String name;
-    private int major;
+    private Majors major;
     private transient boolean admin;
 
     private final String input;
@@ -49,7 +49,7 @@ public class User implements Serializable {
         username = "";
         password = "";
         name = "";
-        major = "";
+        major = Majors.NONE;
         input = "";
         try {
             factory1 = new Configuration().configure().buildSessionFactory();
@@ -59,7 +59,7 @@ public class User implements Serializable {
         }
     }
 
-    public String getMajor() {
+    public Majors getMajor() {
         UserData u = userManager.getMap().get(this.username);
         return u.getMajor();
     }

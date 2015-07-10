@@ -19,7 +19,7 @@ public class UserData {
     private boolean admin;
     private boolean banned;
     private int userId;
-    private int major;
+    private Majors major;
 
    /**
     * generic constructor
@@ -34,7 +34,7 @@ public class UserData {
     UserData(String name, String pass) {
         this.username = name;
         this.password = pass;
-        this.major = 0;
+        this.major = Majors.NONE;
         this.name = "";
     }
 
@@ -53,13 +53,13 @@ public class UserData {
      * @param major
      */
     public void setMajor(int major) {
-        this.major = major;
+        this.major = new Majors(major);
     }
 
     /**
      * return the major of the user
      */
-    public int getMajor() {
+    public Majors getMajor() {
         return major;
     }
 

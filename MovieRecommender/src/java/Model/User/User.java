@@ -316,15 +316,60 @@ public class User implements Serializable{
         return answer;
     }
 
-    public void ban(UserData u) {
+    // public void ban(UserData u) {
+    //   Session session2 = factory1.openSession();
+    //   Transaction tx2 = null;
+    //   try {
+    //       tx2 = session2.beginTransaction();
+    //       String username = u.getUsername();
+    //       String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+    //       Query query = session2.createQuery(hql);
+    //       query.setParameter("banned", "True");
+    //       int answer = query.executeUpdate();
+    //       tx2.commit();
+    //   } catch (Exception e) {
+    //       if (tx2 != null) tx2.rollback();
+    //       e.printStackTrace();
+    //   } finally {
+    //       session2.close();
+    //   }
+    // }
+    //
+    // public void UnBan(UserData u) {
+    //   Session session2 = factory1.openSession();
+    //   Transaction tx2 = null;
+    //   try {
+    //       tx2 = session2.beginTransaction();
+    //       String username = u.getUsername();
+    //       String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+    //       Query query = session2.createQuery(hql);
+    //       query.setParameter("banned", "True");
+    //       int answer = query.executeUpdate();
+    //       tx2.commit();
+    //   } catch (Exception e) {
+    //       if (tx2 != null) tx2.rollback();
+    //       e.printStackTrace();
+    //   } finally {
+    //       session2.close();
+    //   }
+    // }
+
+    public void changeBan(UserData u) {
       Session session2 = factory1.openSession();
       Transaction tx2 = null;
       try {
           tx2 = session2.beginTransaction();
           String username = u.getUsername();
-          String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
-          Query query = session2.createQuery(hql);
-          query.setParameter("banned", "True");
+
+          if (!this.isBanned(username)) {
+              String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+              Query query = session2.createQuery(hql);
+              query.setParameter("banned", "True");
+          } else {
+              String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
+              Query query = session2.createQuery(hql);
+              query.setParameter("banned", "False");
+          }
           int answer = query.executeUpdate();
           tx2.commit();
       } catch (Exception e) {
@@ -335,24 +380,6 @@ public class User implements Serializable{
       }
     }
 
-    public void UnBan(UserData u) {
-      Session session2 = factory1.openSession();
-      Transaction tx2 = null;
-      try {
-          tx2 = session2.beginTransaction();
-          String username = u.getUsername();
-          String hql = "UPDATE UserData SET banned = :banned Where username = '" + username + "'";
-          Query query = session2.createQuery(hql);
-          query.setParameter("banned", "True");
-          int answer = query.executeUpdate();
-          tx2.commit();
-      } catch (Exception e) {
-          if (tx2 != null) tx2.rollback();
-          e.printStackTrace();
-      } finally {
-          session2.close();
-      }
-    }
 
     public boolean isBanned(String username) {
         Session session1 = factory1.openSession();

@@ -4,18 +4,28 @@ package model.user;
  * @author jacob
  */
 public enum Majors {
-    AEROSPACE, APP_LANGUAGES, APP_MATH, APP_PHYS, ARCHITECTURE, BIOCHEMISTRY,
-        BIOLOGY, BIOMEDICAL_ENG, BUSINESS, CHEMICAL_ENG, CHEMISTRY, CIVIL_ENG,
-        COMP_MEDIA, COMP_ENG, COMPUTER_SCIENCE, DISCRETE_MATH, EARTH_SCIENCES,
-        ECONOMICS, ECON_INT_AFFAIRS, ELECTRICAL_ENG, ENVIRON_ENG, GLOBAL_ECON,
-        HISTORY, INDUSTRIAL_ENG, INT_AFFAIRS, LANG_INT_AFFAIRS, LITERATURE,
-        MATERIAL_ENG, MECHANICAL_ENG, NUCLEAR_ENG, PHYSICS, PSYCHOLOGY,
-        PUBLIC_POLICY, NONE
+    NONE (0), AEROSPACE (1), APP_LANGUAGES (2), APP_MATH (3), APP_PHYS (4),
+        ARCHITECTURE (5), BIOCHEMISTRY (6), BIOLOGY (7), BIOMEDICAL_ENG (8),
+        BUSINESS (9), CHEMICAL_ENG (10), CHEMISTRY (11), CIVIL_ENG (12),
+        COMP_MEDIA (13), COMP_ENG (14), COMPUTER_SCIENCE (15),
+        DISCRETE_MATH (16), EARTH_SCIENCES (17), ECONOMICS (18),
+        ECON_INT_AFFAIRS (19), ELECTRICAL_ENG (20), ENVIRON_ENG (21),
+        GLOBAL_ECON (22), HISTORY (23), INDUSTRIAL_DESIGN (24),
+        INDUSTRIAL_ENG (25), INT_AFFAIRS (26), LANG_INT_AFFAIRS (27),
+        LITERATURE (28), MATERIAL_ENG (29), MECHANICAL_ENG (30),
+        NUCLEAR_ENG (31), PHYSICS (32), PSYCHOLOGY (33), PUBLIC_POLICY (34);
+
+    private final int majorID;
+
+    private Majors(int majorID) {
+        this.majorID = majorID;
+    }
 }
 
 /*
 In order:
 
+0. No major (used for minor)
 1. Aerospace Engineering
 2. Applied Languages and Intercultural Studies
 3. Applied Mathematics
@@ -50,5 +60,4 @@ In order:
 32. Physics
 33. Psychology
 34. Public Policy
-35. No major (used for minor)
 */
